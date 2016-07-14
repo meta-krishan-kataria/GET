@@ -25,10 +25,7 @@ public class FindSequence {
 		}
 		table[j][1]=f2;	//important
 		table[j][0]=f1;	
-			/*//printing table
-			for(int i=0; i<30; i++){
-				System.out.println(i+" "+table[i][0]+" "+table[i][1]);
-			}*/
+		
 		//finding the longest sequence from the table 
 		int maxLength=0;
 		int indexOfMaxlength=-1;
@@ -40,20 +37,19 @@ public class FindSequence {
 				indexOfMaxlength=i;
 			}
 		}
-			//System.out.println("Max length is"+maxLength+" inddex at "+indexOfMaxlength);;
+		
 		
 		//creating output array
 		int output[]=new int[maxLength+1];
 		System.out.println();
 		for(int k=0,i=table[indexOfMaxlength][0]; i<=table[indexOfMaxlength][1] ; i++,k++){
-			//System.out.println(input[i]+" ");
 			output[k]=input[i];
-			
 		}
 		System.out.println("final array");
 		for(int x : output){
 			System.out.println(x+" ");
 		}
+		
 		return output;
 		
 	}
