@@ -36,13 +36,14 @@ public class Pattern2 {
 				numbers(n,i);
 				
 			}
+			//printing
 			for(int i=0; i<n ; i++){
 				for(int j=0; j<n;  j++){
 					System.out.print(myGlobal2dArray[i][j]);
 				}
 				System.out.println();
 			}
-			
+			//
 			return myGlobal2dArray;	
 		}
 	/*********************************************/
