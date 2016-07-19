@@ -2,7 +2,7 @@
  class AssignmentQ1 {
 	//maximum
 	 public int max=-35000;	//initializing with a small number
-	 
+	 public int maxDigit=-1;
 	 
 	 //func. to find Greatest Common Divisor of two number
 	public static int gcd(int a,int b){
