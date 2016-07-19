@@ -27,7 +27,10 @@ public class TestAssignmentQ1 {
 		assertEquals(6, AssignmentQ1.gcd(12, 18));
 		assertEquals(1, AssignmentQ1.gcd(100, 3));
 		
-		
+		//
+		System.out.println("Testinf largestDigit()");
+		assertEquals(6, ob1.largestDigit(123456));
+		assertEquals(9, ob2.largestDigit(89090987));
 		
 		
 	}
