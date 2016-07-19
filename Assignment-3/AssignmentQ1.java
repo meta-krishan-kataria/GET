@@ -31,6 +31,20 @@
 			}
 	}
 	
+	//function to find largest digit from a number
+		public int largestDigit(int num){
+			if(num>0){
+				int digit=num%10;	//getting last digit
+				if(digit>maxDigit){
+					maxDigit=digit;
+				}
+				num=num/10;	//removing last digit
+				return largestDigit(num);
+			}else{
+				return maxDigit;
+			}
+		}
+	
 	//func. to find maximum from an array	
 		public int findMaxOfArray(int[] arr,int l,int h){
 			if(l <= h){
