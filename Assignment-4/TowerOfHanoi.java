@@ -1,21 +1,50 @@
 
 public class TowerOfHanoi {
 	
+	public String[] result;
+	public int i;	
+	public TowerOfHanoi(int N) {
 		
-	public String[] solve(int discs, String start, String aux, String end,String[] result){
-		int i=0;
-		if(discs == 1){// Base case (termination condition)
-			
-			result[i++]=new String( start+"->"+end);
-		}
-		else{
-			solve(discs-1, start, end, aux, result);
-			result[i++]= new String(start+"->"+end);
-			solve(discs-1, aux, start, end, result);
-		}
-		return result;
+		result=new String[2*N];
+		i=0;
 	}
-	
 
+	//Using the algorithm
+	/* 
+	 
+	 *1. Move first n-1 disks from source pole
+	    to auxiliary pole using destination as
+	    temporary pole
+	 *2.  Move the remaining disk from source
+	    pole to destination pole
+	 *3. Move the n-1 disks from auxiliary (now source)
+	    pole to destination pole using source pole as
+	    temporary (auxiliary) pole
+
+	 */
+	void tower(int n, char sourcePole, char destinationPole, char auxiliaryPole)
+	{
+	   // Base case (termination condition)
+	   if(n == 1){
+		   System.out.println(sourcePole + "->" + destinationPole);
+		   result[i]=new String(sourcePole + "->" + destinationPole);
+		   i++;
+		   return;
+	   }
+	     
+	 
+	   //step-1
+	   tower(n-1, sourcePole, auxiliaryPole,
+	      destinationPole);
+	    
+	   //step-2
+	   System.out.println(sourcePole + "->" + destinationPole);
+	   result[i]=new String(sourcePole + "->" + destinationPole);
+	   i++;
+	   
+	   // step-3
+	   tower(n-1, auxiliaryPole, destinationPole,
+	     sourcePole);
+	}
 
 }
