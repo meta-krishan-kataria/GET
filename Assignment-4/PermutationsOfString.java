@@ -20,6 +20,7 @@ public class PermutationsOfString {
 			}
 		}
 	}
+	//driver function
 	public static void main(String arg[]){
 		char[] arr="ABCD".toCharArray();
 		PermutationsOfString ob=new PermutationsOfString();
