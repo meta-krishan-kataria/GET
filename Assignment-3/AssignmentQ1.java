@@ -12,6 +12,14 @@
 		return (a>b) ? gcd(a-b,b) : gcd(a,b-a);
 	}
 	
+	// func. to find Greatest Common Divisor of two number	VERSION:2
+	int gcd(int a, int b)
+	{
+	    if (a == 0)
+	        return b;
+	    return gcd(b%a, a);
+	}
+	
 	//func. to find remainder of two numbers //**Non recursive***
 	public static int rem2(int a,int b){	
 		//a>b
