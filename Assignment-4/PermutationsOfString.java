@@ -1,5 +1,20 @@
 
 public class PermutationsOfString {
+	String result[];
+	int i=0;
+	//constructor
+	public PermutationsOfString(int n) {
+		result=new String[factorial(n)];
+	}
+	
+	public static int factorial(int n) {
+    int fact = 1; // this  will be the result
+    for (int i = 1; i <= n; i++) {
+        fact *= i;
+    }
+    return fact;
+}
+	
 	//utility func. to swap two elements of an array
 	public static void swap(char[] arr, int i, int j){
 			char temp;
@@ -12,6 +27,8 @@ public class PermutationsOfString {
 	void permute(char[] a, int L,int H){
 		if(L==H){
 			System.out.println(a);
+			result[i]=new String(a);
+			i++;
 		}else{
 			for(int i=L ; i<=H ; i++){
 				swap( a, L, i);
@@ -21,10 +38,16 @@ public class PermutationsOfString {
 		}
 	}
 	//driver function
+	String[] printPermutationOfString(char[] array){
+		permute(array,0,array.length-1);
+		return result;
+	}
+	
 	public static void main(String arg[]){
-		char[] arr="ABCD".toCharArray();
-		PermutationsOfString ob=new PermutationsOfString();
+		char[] arr="ABC".toCharArray();
+		PermutationsOfString ob=new PermutationsOfString(3);
 		ob.permute(arr, 0, arr.length-1);
 	}
+	
 	
 }
