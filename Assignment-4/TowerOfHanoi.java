@@ -5,7 +5,7 @@ public class TowerOfHanoi {
 	public int i;	
 	public TowerOfHanoi(int N) {
 		
-		result=new String[2*N];
+		result=new String[(int) (Math.pow(2, N) - 1)];
 		i=0;
 	}
 
