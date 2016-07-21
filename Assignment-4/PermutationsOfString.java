@@ -8,11 +8,11 @@ public class PermutationsOfString {
 	}
 	
 	public static int factorial(int n) {
-    int fact = 1; // this  will be the result
-    for (int i = 1; i <= n; i++) {
-        fact *= i;
-    }
-    return fact;
+    	int fact = 1; // this  will be the result
+	 for (int i = 1; i <= n; i++) {
+	     fact *= i;
+	 }
+	 return fact;
 }
 	
 	//utility func. to swap two elements of an array
@@ -24,6 +24,7 @@ public class PermutationsOfString {
 		}
 		
 	//function to print permutation	
+	//a=input char array, L=lower inded, H=higher index
 	void permute(char[] a, int L,int H){
 		if(L==H){
 			System.out.println(a);
