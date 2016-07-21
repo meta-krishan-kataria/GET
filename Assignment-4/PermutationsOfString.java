@@ -13,7 +13,7 @@ public class PermutationsOfString {
 	     fact *= i;
 	 }
 	 return fact;
-}
+	}
 	
 	//utility func. to swap two elements of an array
 	public static void swap(char[] arr, int i, int j){
