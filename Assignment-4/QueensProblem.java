@@ -39,8 +39,8 @@ public class QueensProblem {
 			return true;
 		}
 		
-		//placing queens in each row
-		for (int i = 0; i < N; i++)
+	//placing queens in each row
+	for (int i = 0; i < N; i++)
         {
             //checking for safe position
             if (isSafe(table, i, col))
@@ -60,7 +60,7 @@ public class QueensProblem {
 		
 	}
 	
-	//printing solution	
+     //printing solution	
     void printSolution(int table[][])
     {
         for (int i = 0; i < N; i++)
