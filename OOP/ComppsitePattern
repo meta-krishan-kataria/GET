@@ -1,0 +1,99 @@
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+//
+class  Component {
+    private String componentName;
+    private List<Component> childComponents = new ArrayList<Component>();
+    Scanner sc=new Scanner(System.in);
+    Component(){}
+    
+    Component(String name){
+        componentName=name;
+    }
+    
+    public void add(Component component) {
+        childComponents.add(component);
+    }
+ 
+    public void remove(Component component) {
+        childComponents.remove(component);
+    }
+ 
+    public void showName(){
+        System.out.println(componentName);
+    }
+    
+    public void showAll() {
+        System.out.println(">"+componentName);
+        for (Component component : childComponents) {
+            component.showAll();
+        }
+    }
+    
+    public void show2(){
+        System.out.println(">"+componentName);
+        int i=0;
+        for(Component c :childComponents){
+            System.out.print(i+" ");
+            c.showName();
+            i++;
+        }
+        
+        int temp=sc.nextInt();
+        Component tempC=childComponents.get(temp);
+        tempC.show2();
+        
+        
+    }
+    
+}
+ 
+//leaf
+class Leaf extends Component {
+    String name;
+    public Leaf(String s){
+        super();
+        name = s;
+    }
+    public void show2() {
+        System.out.println(name);
+        int temp2=sc.nextInt();
+        if(temp2==-1)
+            return ;
+    }
+    public void showName() {
+        System.out.println(name);
+    }
+}
+ 
+ 
+public class CompositeTest {
+ 
+    public static void main(String[] args) {
+        
+        Component componentRoot=new Component("Shop");
+        
+        Component component1 = new Component("Clothing");
+        Leaf leaf1 = new Leaf("Men's fashion");
+        Leaf leaf2 = new Leaf("Women's fashion");
+        component1.add(leaf1);
+        component1.add(leaf2);
+ 
+        Component component2 = new Component("Electronics");        
+        Leaf leaf3 = new Leaf("Computers");
+        Leaf leaf4 = new Leaf("Mobiles");
+        Leaf leaf5 = new Leaf("Home appliances");
+        component2.add(leaf3);
+        component2.add(leaf4);
+        component2.add(leaf5);
+ 
+        
+        
+        componentRoot.add(component1);
+        componentRoot.add(component2);
+        
+        componentRoot.show2();
+    }
+}
