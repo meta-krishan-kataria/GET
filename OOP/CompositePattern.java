@@ -54,7 +54,7 @@ class  Component {
         		System.out.println("Invalid choice");
         		choice=sc.nextInt();	//if not valid take input again
         	}
-	    //step-4 expanding child element    
+	//step-4 expanding child element    
         Component child=childComponents.get(choice);
         child.expand();
         //step-5 recurring
