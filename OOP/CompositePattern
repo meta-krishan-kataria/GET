@@ -41,6 +41,7 @@ class  Component {
             c.showName();
             i++;
         }
+        
         //step-3 asking for choice
         System.out.println("Enter your choice (Press -1 to move back)");
         int choice=sc.nextInt();
@@ -48,12 +49,27 @@ class  Component {
         	if(choice==-1){
 	        	return;
 	        }
+        	//validating choice
+        	while(  isChoiceValid(i, choice)==false  ){
+        		choice=sc.nextInt();	//if not valid take input again
+        	}
 	    //step-4 expanding child element    
         Component child=childComponents.get(choice);
         child.expand();
         
         this.expand();
         
+    }
+    
+    /*
+     * for void choice -> true
+     * */
+    boolean isChoiceValid(int i,int choice){
+    	if(choice < i && choice >=0){
+    		return true;
+    	}else{
+    		return false;
+    	}
     }
     
 }
