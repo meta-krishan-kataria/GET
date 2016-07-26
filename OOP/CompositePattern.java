@@ -51,17 +51,18 @@ class  Component {
 	        }
         	//validating choice
         	while(  isChoiceValid(i, choice)==false  ){
+        		System.out.println("Invalid choice");
         		choice=sc.nextInt();	//if not valid take input again
         	}
 	    //step-4 expanding child element    
         Component child=childComponents.get(choice);
         child.expand();
-        
+        //step-5 recurring
         this.expand();
         
     }
     
-    /*
+    /*	Function to validate input choice
      * for void choice -> true
      * */
     boolean isChoiceValid(int i,int choice){
@@ -126,7 +127,6 @@ public class CompositePattern {
         c1_1.add(c1_1_b);
         c1_2.add(c1_2_a);
         c1_2.add(c1_2_b);
-        
         componentRoot.add(c1);
         
         //making "electronics" branch
@@ -137,7 +137,6 @@ public class CompositePattern {
         c2.add(leaf3);
         c2.add(leaf4);
         c2.add(leaf5);
- 
         componentRoot.add(c2);
         
         //initializing menu
