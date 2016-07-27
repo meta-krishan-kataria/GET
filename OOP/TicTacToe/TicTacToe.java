@@ -16,6 +16,20 @@ import java.util.Scanner;
 
 
 public class TicTacToe {
+	/*	Operation to be performed
+	 * 
+	 * initialize players
+	 * 
+	 * show layout
+	 * maintain turns
+	 * ask choice
+	 * fill choice
+	 * check rules
+	 * get status
+	 * 
+	 * repeat
+	 * 
+	 * */
 	
 	private int[][] matrix={ {-1,-1,-1},{-1,-1,-1},{-1,-1,-1} };
 	
@@ -32,19 +46,11 @@ public class TicTacToe {
 	
 	int gameType=0;
 	
+	
 	/*
-	 * initialize players
-	 * 
-	 * show layout
-	 * maintain turns
-	 * ask choice
-	 * fill choice
-	 * check rules
-	 * get status
-	 * 
-	 * repeat
-	 * 
+	 * Two Player Game
 	 * */
+	
 	public void startTwoPlayerGame(){
 		int turn=0;		// 0 -> player1  1->player2
 		String name="";
@@ -94,14 +100,10 @@ public class TicTacToe {
 			
 			winner=rules.checkWin(matrix);
 			if(winner==1){
-				System.out.println("****************************************");
-				System.out.println("PLAYER 1 WON");
-				System.out.println("****************************************");
+				printWinnerName("PLAYER 1");
 				break;
 			}else if(winner==2){
-				System.out.println("****************************************");
-				System.out.println("PLAYER 2 WON");
-				System.out.println("****************************************");
+				printWinnerName("PLAYER 2");
 				break;
 			}else{
 				continue;
@@ -110,6 +112,10 @@ public class TicTacToe {
 		}while(true);
 	}	
 	
+	/*
+	 * Play with Computer
+	 * 
+	 * */
 	public void playWtihComputer(){
 		int turn=0;		// 0 -> player1  1->player2
 		String name="";
@@ -156,20 +162,16 @@ public class TicTacToe {
 			//checking rules
 			draw=rules.checkDraw(matrix);
 			if(draw==true){
-				System.out.println("OOOOPPSSSS!!!Match Tie");
+				System.out.println("\n    OOOOPPSSSS !!! Match Tie");
 				break;
 			}
 			
 			winner=rules.checkWin(matrix);
 			if(winner==1){
-				System.out.println("****************************************");
-				System.out.println("PLAYER 1 WON");
-				System.out.println("****************************************");
+				printWinnerName("PLAYER 1");
 				break;
 			}else if(winner==2){
-				System.out.println("****************************************");
-				System.out.println("COMPUTER WON");
-				System.out.println("****************************************");
+				printWinnerName("COMPUTER");
 				break;
 			}else{
 				continue;
@@ -179,6 +181,12 @@ public class TicTacToe {
 		
 		
 		
+	}
+	
+	void printWinnerName(String name){
+		System.out.println("****************************************");
+		System.out.println( name + " WON");
+		System.out.println("****************************************");
 	}
 	
 	
