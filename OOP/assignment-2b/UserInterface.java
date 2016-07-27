@@ -20,8 +20,8 @@ public class UserInterface {
 	}
 	
 	//main function to generate user Interface
-	public void generateUserInterface(){
-		//responses
+	public QuestionInfo[] generateUserInterface(){
+		//responses (arraylist of String Buffer)
 		List<String> output=new ArrayList<String>();
 		List<StringBuffer> output2=new ArrayList<StringBuffer>();
 		
@@ -29,6 +29,7 @@ public class UserInterface {
 		char fillmore;
 		int p=0;	//participant number
 		
+		//Loop for new participants
 		do{
 		p++;
 		
@@ -37,10 +38,10 @@ public class UserInterface {
 		StringBuffer rs2=new StringBuffer();
 		rs2.append("Participant:");
 		rs2.append(p);
+		rs2.append("  ");
 		
+		//expanding questions
 		for( int i=0; i < questions.length; i++ ){
-			
-			
 			
 			
 			//printing question id and title
@@ -54,6 +55,10 @@ public class UserInterface {
 				Integer singlechoice=generateSingleSelectField( questions[i] );
 				rs=rs+singlechoice;
 				rs2.append(singlechoice);
+				rs2.append("  ");
+				
+				//recording response for survey report
+				questions[i].recordResponseData(singlechoice);
 				
 			}else if( questions[i].type.equals("Multi Select") )
 			{
@@ -61,12 +66,15 @@ public class UserInterface {
 				ArrayList<Integer> al=generateMultiSelectField( questions[i] );
 				rs=rs + al.toString() ;
 				rs2.append(al);
+				rs2.append("  ");
+				
 			}else if( questions[i].type.equals("Number") )
 			{
 				System.out.println(" (Enter the number) ");
 				int num=generateNumberField( questions[i] );
 				rs=rs+num;
 				rs2.append(num);
+				rs2.append("  ");
 				
 			}else if( questions[i].type.equals("Text") )
 			{
@@ -74,6 +82,8 @@ public class UserInterface {
 				String text=generateTextField( questions[i] );
 				rs=rs+text;
 				rs2.append(text);
+				rs2.append("  ");
+				
 			}else{
 				System.out.println("INVALID TYPE");
 			}
@@ -89,19 +99,26 @@ public class UserInterface {
 		fillmore=sc.next().charAt(0);
 		}while(fillmore=='y');
 		
-		//at the end of survey
-		//printing response
-		/*for(String s:output){
-			System.out.println(s);
-		}
-		*/
+		//printing responses at the end of survey
 		for(StringBuffer s:output2){
 			System.out.println(s);
 		}
 		
+		//writing response to file
+		FileWrite.writeToFile(output2);
+		
+		
+		//returning questions for survey report generation		
+		return questions;
 		
 	}
 	
+	
+	
+	/*
+	 * FunctionS to generate specific field for different type of questions
+	 * 
+	 * */
 	
 	public int generateSingleSelectField( QuestionInfo q ){
 		int singleChoice;
