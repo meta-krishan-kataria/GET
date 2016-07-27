@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.ArrayList;
-
+/**
+ * 
+ * */
 
  class DriverClass {
 
@@ -9,11 +11,12 @@ import java.util.ArrayList;
 		
 		//reading file for question descriptions
 		InputFileParser parser=new InputFileParser();
+		
 		ArrayList<String> questionDescription=parser.readInputFile( inputFile );
 		
 		//creating QuestionInfo objects
 		QuestionInfo questionSet[]=new QuestionInfo[ questionDescription.size() ];
-		
+		//parsing question description
 		for(int i=0; i<questionSet.length;  i++)
 		{
 			questionSet[i]=parser.parseQuestionDescription( questionDescription.get(i) );
@@ -24,11 +27,19 @@ import java.util.ArrayList;
 		for(QuestionInfo q : questionSet){
 			q.show();
 		}
+		//generating form
 		System.out.println("***************************************************************");
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		System.out.println("                       FORM");
+		
 		UserInterface UI=new UserInterface(questionSet);
-		UI.generateUserInterface();
+		
+		QuestionInfo output[]=UI.generateUserInterface();
+		
+		//survey report
+		System.out.println("\nSurvey Report");
+		SurveyReport report=new SurveyReport();
+		report.generateSurvryReport(output);
 		
 		
 	}
