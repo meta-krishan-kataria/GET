@@ -38,7 +38,7 @@ public class SocialNetwork {
 		try{
 		int choice=sc.nextInt();
 		switch (choice){
-		case 1: showProfile();
+		case 1: showAll(); //showProfile();
 		break;
 		case 2: showMyFeeds();
 		break;
@@ -56,6 +56,12 @@ public class SocialNetwork {
 
 	}
 	
+	void showAll() throws Exception{
+		List<Profile> allprofiles=profileManager.loadProfiles();
+		for(Profile p : allprofiles){
+			System.out.println(p.toString());
+		}
+	}
 	
 	void showProfile() throws Exception {
 		Profile userProfile=profileManager.searchProfiles(username);
@@ -65,6 +71,7 @@ public class SocialNetwork {
 	void showMyFeeds() throws Exception{
 		List<Post> allPosts;
 		allPosts=postManager.getPostsOf(username);
+		System.out.println("Posts are");
 		for(Post p : allPosts){
 			System.out.println(p);
 		}	
