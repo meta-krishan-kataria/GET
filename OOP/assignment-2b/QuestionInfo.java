@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 /* Class to store information of a question*/
 public class QuestionInfo implements Comparable<QuestionInfo>{
@@ -8,7 +12,7 @@ public class QuestionInfo implements Comparable<QuestionInfo>{
 	int numberOfOptions;
 	boolean number;
 	boolean text;
-	
+	int[]  freqChart;	//frequency chart for single choice type question
 	
 	
 	public QuestionInfo() {
@@ -56,6 +60,20 @@ public class QuestionInfo implements Comparable<QuestionInfo>{
 		}	
 	}
 
+	//function to initialize frequency chart
+	public void initializeFC(int n){
+		freqChart=new int[n+1];
+		//initializing it with zero
+		for(int i=0; i<n ; i++){
+			freqChart[i]=0;
+		}
+	}
+	
+	//function to set survey data in frequency chart
+	public void recordResponseData(int response){
+		freqChart[response]++;
+	}
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -63,5 +81,6 @@ public class QuestionInfo implements Comparable<QuestionInfo>{
 	public String toString(){
 		return this.title;
 	}
+	
 	
 }
