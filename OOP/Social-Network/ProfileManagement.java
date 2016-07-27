@@ -1,3 +1,4 @@
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -42,7 +43,8 @@ public class ProfileManagement  {
 		FileInputStream fin=new FileInputStream( filename );
 		ObjectInputStream oin=new ObjectInputStream(fin);
 		
-		while( ( temp = (Profile)oin.readObject() ) != null ){
+		while( oin.available() > 0 ){
+			 temp = (Profile)oin.readObject();
 			allProfiles.add(temp);
 		}
 		
@@ -60,8 +62,9 @@ public class ProfileManagement  {
 		
 		FileInputStream fin=new FileInputStream( filename );
 		ObjectInputStream oin=new ObjectInputStream(fin);
-		
-		while( ( temp = (Profile)oin.readObject() ) != null ){
+		try{
+		while( oin.available() > 0 ){
+			temp = (Profile)oin.readObject();
 			if( temp.username.equals(username) == true ){
 				desiredProfile=temp;
 				return desiredProfile;
@@ -69,7 +72,9 @@ public class ProfileManagement  {
 				continue;
 			}
 		}
-		
+		}catch(EOFException e){
+			System.out.println("EOF");
+		}
 		oin.close();
 		return null;
 			
