@@ -63,7 +63,8 @@ class PostsManagement  {
 		FileInputStream fin=new FileInputStream( filename );
 		ObjectInputStream oin=new ObjectInputStream(fin);
 		
-		while( ( temp = (Post)oin.readObject() ) != null ){
+		while( oin.available() > 0 ){
+			temp = (Post)oin.readObject();
 			if( temp.username.equals(username) == true ){
 				desiredPosts.add(temp);
 			}else{
