@@ -8,9 +8,9 @@ import java.util.Scanner;
  * player1: '0'
  * player2: 'X'
  *  
- * Symbol Values for 	'0'			->	0
- * 						'X'			->	1
- * 						unplaced	->	-1
+ * Symbol Values for 	'0'	->	0
+ * 			'X'	->	1
+ * 			unplace	->	-1
  * 
  * */
 
