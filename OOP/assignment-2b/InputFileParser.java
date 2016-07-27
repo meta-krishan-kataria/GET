@@ -79,6 +79,9 @@ public class InputFileParser {
 		//filling number_of_options
 		ques.numberOfOptions=optionsCount;
 		
+		//initializing frequency chart
+		ques.initializeFC(optionsCount);
+		
 		//returning tokens
 		String[] outStringArray=new String[optionsCount];
 		
