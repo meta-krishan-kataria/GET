@@ -24,58 +24,102 @@ class PostsManagement  {
 	 */
 	void addPost (Post p) throws IOException{
 		
-		FileOutputStream fout=new FileOutputStream( filename );
+		FileOutputStream fout=new FileOutputStream( filename, true );
 		ObjectOutputStream oout=new ObjectOutputStream( fout );
 			
 		oout.writeObject(p);
 		oout.flush();
+		oout.close();
 		
 			
 	}
 	
 	/**
-	 * 
+	 * Function to load all posts from DB
 	 */
 	
 	List<Post> loadPosts() throws Exception{
+		
 		List<Post> allPosts=new ArrayList<Post>();
 		Post temp;
 		
 		FileInputStream fin=new FileInputStream( filename );
 		ObjectInputStream oin=new ObjectInputStream(fin);
 		
-		while( ( temp = (Post)oin.readObject() ) != null ){
-			allPosts.add(temp);
+		try{
+			while(  (temp = (Post)oin.readObject()) != null ){
+				 
+				 
+				 allPosts.add(temp);
+				 // again creating the stream to curb java.io.streamcorruptedexception
+				 oin=new ObjectInputStream(fin); 
+			}
+		}catch(Exception e){
+			
+			//e.printStackTrace();
+			oin.close();
+			return allPosts;	
 		}
 		
 		oin.close();
+		
+		//returning
 		return allPosts;	
 	}
 	
 	/**
-	 * 
+	 * Function to search Posts
 	 */
 	
-	 List<Post> getPostsOf(String username) throws Exception{
+	 List<Post> searchPost(String username) throws Exception{
 		List<Post> desiredPosts=new ArrayList<Post>();
 		Post temp;
 		
 		FileInputStream fin=new FileInputStream( filename );
 		ObjectInputStream oin=new ObjectInputStream(fin);
 		
-		while( oin.available() > 0 ){
-			temp = (Post)oin.readObject();
-			if( temp.username.equals(username) == true ){
-				desiredPosts.add(temp);
-			}else{
-				continue;
+		/*
+		 * oin.available()  -> don't use this, it has ambiguity
+		 * */
+		
+		try{
+			while(  (temp = (Post)oin.readObject()) != null ){
+				 
+				 if( temp.username.equalsIgnoreCase(username) ){
+					 desiredPosts.add(temp);
+				 }
+				 // again creating the stream to curb java.io.streamcorruptedexception
+				 oin=new ObjectInputStream(fin); 
 			}
+		}catch(Exception e){
+			
+			//e.printStackTrace();
+			oin.close();
+			return desiredPosts;	
 		}
+		
 		
 		oin.close();
 		
-		return desiredPosts;	
+		//empty list can be returned in failure case
+		return desiredPosts;
+			
 	}
+	 
+	 public static void main (String arg[]) throws Exception {
+		 	PostsManagement pm=new PostsManagement();
+			
+		 	List<Post> allPosts=pm.loadPosts();
+			for(Post p : allPosts){
+				System.out.println(p);
+			}
+			
+			allPosts=pm.searchPost("NitinDon");
+			for(Post p : allPosts){
+				System.out.println(p);
+			}
+			
+		}
 
 	
 }
