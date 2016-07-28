@@ -3,6 +3,7 @@ public class PostsAdder {
 	
 	void createPosts(){
 		
+		Post p0= new Post("arpitP", "Sunday kb haiii.....");
 		Post p1= new Post("kirsh", "enjoying programming at metacube");
 		Post p2= new Post("krish", "todays assignment was lengthy");
 		Post p3= new Post("Pratap", "lets have a cup of tea");
@@ -17,6 +18,7 @@ public class PostsAdder {
 		PostsManagement pm=new PostsManagement();
 		
 		try{
+			pm.addPost(p0);
 			pm.addPost(p1);
 			pm.addPost(p2);
 			pm.addPost(p3);
@@ -34,7 +36,10 @@ public class PostsAdder {
 		}
 		
 		
-		
+	}
+	public static void main(String arg[]){
+		PostsAdder pa=new PostsAdder();
+		pa.createPosts();
 		
 	}
 	
