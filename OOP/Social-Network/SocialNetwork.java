@@ -38,7 +38,7 @@ public class SocialNetwork {
 				
 				System.out.println("1: Show my profile");
 				System.out.println("2: Show My Posts");
-				System.out.println("3: Show New Posts from friends");
+				System.out.println("3: Show New Posts");
 				System.out.println("4: Write a post");
 				System.out.println("5: View All people");
 				System.out.println("6: Search people");
