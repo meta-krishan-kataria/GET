@@ -1,4 +1,5 @@
 import java.io.EOFException;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,66 +19,110 @@ interface ProfileManagementInterface{
 public class ProfileManagement  {
 
 	String filename="D:/myfiles/profiledb.txt";
+	
 	/**
-	 * 
+	 * Function to add new profile to DB
 	 */
 	void addProfile (Profile p) throws IOException{
 		
-		FileOutputStream fout=new FileOutputStream( filename );
+		FileOutputStream fout=new FileOutputStream( filename ,true);	// here 'true' to append the file
 		ObjectOutputStream oout=new ObjectOutputStream( fout );
 			
 		oout.writeObject(p);
 		oout.flush();
+		oout.close();
 		
 			
 	}
 	
 	/**
-	 * 
+	 * Function to load all profiles from DB
 	 */
 	
 	List<Profile> loadProfiles() throws Exception{
+		
 		List<Profile> allProfiles=new ArrayList<Profile>();
 		Profile temp;
 		
 		FileInputStream fin=new FileInputStream( filename );
 		ObjectInputStream oin=new ObjectInputStream(fin);
 		
-		while( oin.available() > 0 ){
-			 temp = (Profile)oin.readObject();
-			allProfiles.add(temp);
+		try{
+			while(  (temp = (Profile)oin.readObject()) != null ){
+				 
+				 
+				 allProfiles.add(temp);
+				 // again creating the stream to curb java.io.streamcorruptedexception
+				 oin=new ObjectInputStream(fin); 
+			}
+		}catch(Exception e){
+			
+			//e.printStackTrace();
+			oin.close();
+			return allProfiles;	
 		}
 		
 		oin.close();
+		
+		//returning
 		return allProfiles;	
 	}
 	
 	/**
-	 * 
+	 * Function to search profiles
 	 */
 	
-	 Profile searchProfiles(String username) throws Exception{
-		Profile desiredProfile;
+	 List<Profile> searchProfiles(String username) throws Exception{
+		List<Profile> desiredProfiles=new ArrayList<Profile>();
 		Profile temp;
 		
 		FileInputStream fin=new FileInputStream( filename );
 		ObjectInputStream oin=new ObjectInputStream(fin);
+		
+		/*
+		 * oin.available()  -> don't use this, it has ambiguity
+		 * */
+		
 		try{
-		while( oin.available() > 0 ){
-			temp = (Profile)oin.readObject();
-			if( temp.username.equals(username) == true ){
-				desiredProfile=temp;
-				return desiredProfile;
-			}else{
-				continue;
+			while(  (temp = (Profile)oin.readObject()) != null ){
+				 
+				 if( temp.username.equalsIgnoreCase(username)  ){
+					 desiredProfiles.add(temp);
+				 }
+				 
+				 // again creating the stream to curb java.io.streamcorruptedexception
+				 oin=new ObjectInputStream(fin); 
 			}
-		}
-		}catch(EOFException e){
-			System.out.println("EOF");
-		}
-		oin.close();
-		return null;
+		}catch(Exception e){
 			
+			//e.printStackTrace();
+			oin.close();
+			return desiredProfiles;	
+		}
+		
+		
+		oin.close();
+		
+		//empty list can be returned in failure case
+		return desiredProfiles;
+			
+	}
+	 
+	public static void main (String arg[]) throws Exception {
+		ProfileManagement pm=new ProfileManagement();
+		List<Profile> allProfiles=pm.loadProfiles();
+		for(Profile p : allProfiles){
+			System.out.println(p);
+		}
+		
+		allProfiles=pm.searchProfiles("Pratap");
+		if(allProfiles.size() <= 0){
+			System.out.println("Not Found");
+		}else{
+			for(Profile p : allProfiles){
+				System.out.println(p);
+			}
+		}	
 	}
 
 
