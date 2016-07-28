@@ -86,7 +86,7 @@ public class ProfileManagement  {
 		try{
 			while(  (temp = (Profile)oin.readObject()) != null ){
 				 
-				 if( temp.username.equalsIgnoreCase(username)  ){
+				 if( temp.username.toLowerCase().contains(username.toLowerCase())==true  ){
 					 desiredProfiles.add(temp);
 				 }
 				 
