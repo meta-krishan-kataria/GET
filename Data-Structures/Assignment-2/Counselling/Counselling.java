@@ -4,67 +4,116 @@ import java.io.*;
 
 
 public class Counselling {
-	public static void main(String args[]){
-	Scanner sc=new Scanner(System.in);
 	
 	//Student Queue	
-	Queue<Student> sq=new LinkedList<Student>();
+	MyUtil.MyQueue<Student> sq;
+	//queue for allotted students
+	MyUtil.MyQueue<Student> resultantSQ;
 	//Seat allocator object
-	SeatAllocator sa=new SeatAllocator();
+	SeatAllocator allocator=new SeatAllocator();
+	//Scanner object
+	Scanner sc=new Scanner(System.in);
 	
-	Student s1=new Student("krishan", 1);
-	Student s2=new Student("prateek",2 );
-	Student s3=new Student("rahul",3 );
-	Student s4=new Student("arpit",4 );
-	Student s5=new Student("dheeraj",5 );
-	Student s6=new Student("jai",6 );
-	Student s7=new Student("deepak",7 );
 	
-	sq.add(s1);
-	sq.add(s2);
-	sq.add(s3);
-	sq.add(s4);
-	sq.add(s5);
-	sq.add(s6);
-	sq.add(s7);
+	/**
+	 *sets the counselling process 
+	 * */
+	public  void setUp(){
 	
-	int sno=1;
-	for( Student x : sq ){
-		System.out.println("Give your choice "+ x.name+ "  "+x.rank);
+	
+		//Student Queue	
+		 sq=new MyUtil.MyQueue<Student>();
+		//queue for allotted students
+		 resultantSQ=new MyUtil.MyQueue<Student>();
+		//Seat allocator object
+		allocator=new SeatAllocator();
+		//scanner
+		sc=new Scanner(System.in);
 		
+		Student s1=new Student("krishan", 1);
+		Student s2=new Student("prateek",2 );
+		Student s3=new Student("rahul",3 );
+		Student s4=new Student("arpit",4 );
+		Student s5=new Student("dheeraj",5 );
+		Student s6=new Student("jai",6 );
+		Student s7=new Student("deepak",7 );
 		
-		do{
-			try{
-				System.out.println( sa.showSeatMatrix() );;
-				int choice=sc.nextInt();
-				switch(choice){
-					case 1 :  x.allotedCollege=sa.allocateC1();
-						break;
-					case 2 :  x.allotedCollege=sa.allocateC2();
-						break;
-					case 3 :  x.allotedCollege=sa.allocateC3();
-						break;
-					default: System.out.println("Invalid choice");	
-						
+		sq.enqueue(s1);
+		sq.enqueue(s2);
+		sq.enqueue(s3);
+		sq.enqueue(s4);
+		sq.enqueue(s5);
+		sq.enqueue(s6);
+		sq.enqueue(s7);
+		
+	}	//end setUp
+	
+	
+	/**
+	 * Starts counseling process, asks for responses and do allocation work
+	 * */
+	public void startCounselling(){
+	
+		int sno=1;
+		
+		while( sq.getSize() > 0 ){
+			
+			Student x=sq.dequeue();
+			
+			System.out.println("You are " + x);
+			System.out.println("\nUpdated Seat Matrix");
+			System.out.println(  allocator.showSeatMatrix() );;
+			
+			System.out.println("Enter your choice   "+ x.name);
+			
+			
+			do{
+				try{
+					
+					int choice=sc.nextInt();
+					switch(choice){
+						case 1 :  x.allotedCollege=allocator.allocateC1();
+							break;
+						case 2 :  x.allotedCollege=allocator.allocateC2();
+							break;
+						case 3 :  x.allotedCollege=allocator.allocateC3();
+							break;
+						default: System.out.println("Invalid choice");	
+							
+					}
+					
+					
+				}catch(NoVacantSeatException ex){
+					System.out.println("Sorry seat is not available");
+					System.out.println("Choose another option");
+					
 				}
-			}catch(NoVacantSeatException ex){
-				System.out.println("Sorry seat is not available");
-				System.out.println("Choose another option");
-				
+			}while( x.allotedCollege.equals("None") );
+			
+			//storing result
+			resultantSQ.enqueue(x);
+			
+			//checking whether seats are full or not
+			if( allocator.numberOfSeatsLeft() <= 0 ){
+				System.out.println("All Seats Full");
+				break;	//breaking for loop
 			}
-		}while(x.allotedCollege == null );
-		
-		
-	}
-	
-	
-	
-	
-	
+			
+			System.out.println("                 SUCCESSFULLY ALLOTED");
+			System.out.println("*****************************************************************");
+		}//end while
 	
 	}
 	
 	
+	/**
+	 * prints student list with allocated seat
+	 * */
+	void printCounsellingResult( ){
+		while( resultantSQ.getSize() > 0 ){
+			System.out.println( resultantSQ.dequeue());
+		}
+	}
 	
 	
 }
