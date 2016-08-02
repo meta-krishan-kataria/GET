@@ -17,10 +17,17 @@ public class College {
 	}
 
 	/**
+	 * returns number of available seats
+	 * */
+	public int getAvailableSeat(){
+		return availabelSeats;
+	}
+	
+	/**
 	 * updates available seats number and returns college name
 	 * @throws if no vacant seat available
 	 * */
-	public String getSeat() {
+	public String allocateSeat() {
 		if( isAvailabe() ){
 			availabelSeats--;
 			return this.name;
@@ -39,7 +46,7 @@ public class College {
 	}
 	
 	public String toString(){
-		return new String( this.name + "Vacant seats: " +availabelSeats );
+		return new String( "College: " + this.name + "  Vacant seats: " +availabelSeats );
 	}
 	
 	
