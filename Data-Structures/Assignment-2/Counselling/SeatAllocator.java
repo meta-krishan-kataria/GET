@@ -15,20 +15,29 @@ public class SeatAllocator {
 	
 	
 	String allocateC1 () throws NoVacantSeatException{
-		return c1.getSeat();
+		return c1.allocateSeat();
 	}
 	
 	String allocateC2 () throws NoVacantSeatException{
-		return c2.getSeat();
+		return c2.allocateSeat();
 	}
 	String allocateC3 () throws NoVacantSeatException{
-		return c3.getSeat();
+		return c3.allocateSeat();
 	}
 	
 	String showSeatMatrix(){
-		return new String(    c1.toString()+ "\n" 
-							+ c2.toString()+ "\n"
-							+ c3.toString()+ "\n" );
+		return new String(   " 1 " +  c1.toString()+ "\n" 
+							+ " 2 "+  c2.toString()+ "\n"
+							+ " 3 "+  c3.toString()+ "\n" );
+	}
+	
+	/**
+	 * checks vacant seats in all colleges
+	 * returns true if yes and false if no vacant seats left
+	 * */
+	public int numberOfSeatsLeft(){
+		int numOfVacantSeats=c1.getAvailableSeat()+c2.getAvailableSeat()+c3.getAvailableSeat();
+		return numOfVacantSeats;
 	}
 	
 	
