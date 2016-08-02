@@ -7,9 +7,9 @@ public class SeatAllocator {
 	
 	
 	public SeatAllocator(){
-		 c1=new College("MNIT",1, 5);
-		 c2=new College("BITS",2, 5);
-		 c3=new College("PCE", 3,5);
+		 c1=new College("MNIT",1, 2);
+		 c2=new College("BITS",2, 2);
+		 c3=new College("PCE", 3,2);
 		
 	}
 	
