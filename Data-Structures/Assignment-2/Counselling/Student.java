@@ -8,7 +8,7 @@ public class Student {
 		super();
 		this.name = name;
 		this.rank = rank;
-		allotedCollege=null;
+		allotedCollege=new String("None");
 	}
 
 	public String getAllotedCollege() {
@@ -17,6 +17,12 @@ public class Student {
 
 	public void setAllotedCollege(String allotedCollege) {
 		this.allotedCollege = allotedCollege;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [name=" + name + ", rank=" + rank + ", allotedCollege="
+				+ allotedCollege + "]";
 	}
 	
 	
