@@ -8,7 +8,7 @@ package MyUtil;
  */
 
 
-public class LinkedList <E> {
+public class LinkedList <E>  {
 	
 	/**
 	 * pointer to the head of the node i.e the first element of list
@@ -31,7 +31,7 @@ public class LinkedList <E> {
 	 * return the size of list i.e. number of elements in the list
 	 */
 	int getSize(){
-		//Traversing
+		//Traversing and counting
 			Node<E> ptr=first;		
 			int size=0;			//count 
 			while(  ptr != null ){	//till end of the list
@@ -50,6 +50,8 @@ public class LinkedList <E> {
 		if( getSize()==0 ){
 			//new node
 			Node<E> newNode=new Node<E>();
+			//adding data
+			newNode.data=e;
 			//setting its next as null
 			newNode.next=null;
 			//updating 'first' pointer
@@ -60,6 +62,8 @@ public class LinkedList <E> {
 		
 			//new node
 			Node<E> newNode=new Node<E>();
+			//adding data
+			newNode.data=e;
 			//setting its next as null
 			newNode.next=null;
 			//linking
@@ -149,6 +153,26 @@ public class LinkedList <E> {
             throw new NoSuchElementException();
         return l.data;
     }
+    
+    /**
+     * sorts the list
+     * 
+     * */
+    void sort(){
+    	//uses bubble sort
+    	for( Node<E> loop=first;   loop != null ;   loop=loop.next ){
+    		for( Node<E> ptr=first;   ptr != null ;   ptr=ptr.next ){
+    			if(	 ptr.data.compareTo( ptr.next.data )	){
+    				//swapping
+    				E temp=ptr.data;
+    				ptr.data = ptr.next.data;
+    				ptr.next.data = temp;	
+    			}
+    			
+    		}
+    	}
+    }
+
 	
 	
 	
