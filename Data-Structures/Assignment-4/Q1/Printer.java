@@ -28,7 +28,7 @@ public class Printer {
 		
 		Scanner sc=new  Scanner(System.in);
 		
-		JobHeap heap=new JobHeap();
+		
 		
 		int id;
 		int priority;
@@ -44,22 +44,30 @@ public class Printer {
 				
 				//taking inputs for the new job
 				System.out.println("********************Insert new job************");
-				System.out.print("Enter Job id   ");
-				id=sc.nextInt();
+				System.out.println("Enter Job id = "+i);
+				//id=sc.nextInt();
 				System.out.print("Enter Job priority   ");
 				priority=sc.nextInt();
 				
 				//adding job to the buffer
-				jobList.add(  new Job(id, priority) );
+				jobList.add(  new Job(i, priority) );
 				System.out.println("Job added Successfully");
 				
+				//creating heap object
+				JobHeap heap=new JobHeap(jobList);
+				
 				//maintaining job order 
-				List<Job> resultant =  heap.buildHeap(jobList) ;
+				//List<Job> resultant =  heap.buildHeap(jobList) ;
+				
+				//sorting
+				heap.heapSort(jobList);
 				
 				//showing the updated buffer
 				System.out.println("\n\nBuffer State");
-				printList(resultant);
+				printList(jobList);
 				System.out.println();
+				
+				i++;
 				
 				
 			}
