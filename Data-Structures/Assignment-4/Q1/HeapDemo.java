@@ -4,14 +4,21 @@ public class HeapDemo {
 
 	public static void main(String[] args) {
 		
-		int a[]={1,2,3,4,5,6,7};
+		int a[]={1,10,8,4,68,29,67};
 		
-		Heap heap=new Heap();
+		Heap heap=new Heap(a);
 	
 
-		int b[]=heap.buildHeap(a);
+		heap.buildHeap(a);
+		for(int x : a){
+			System.out.print(x+"  ");
+		}
+		System.out.println();
 		
-		for(int x : b){
+		
+		heap.heapSort(a);
+		
+		for(int x : a){
 			System.out.print(x+"  ");
 		}
 		 
