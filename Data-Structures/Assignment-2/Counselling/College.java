@@ -25,7 +25,7 @@ public class College {
 	
 	/**
 	 * updates available seats number and returns college name
-	 * @throws if no vacant seat available
+	 * @throws NoVacantSeatException if no vacant seat available
 	 * */
 	public String allocateSeat() {
 		if( isAvailabe() ){
