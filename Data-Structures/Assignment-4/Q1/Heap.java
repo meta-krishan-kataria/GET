@@ -4,6 +4,14 @@
  * */
 public class Heap {
 	
+	private int heapSize;
+	
+	Heap(int[] a){
+		heapSize=0;
+		for(int x:a){
+			heapSize++;
+		}
+	}
 
 	/**
 	 * method to maintain the heap order
@@ -32,7 +40,7 @@ public class Heap {
 			largest=i;
 		}
 		
-		if( r <= getHeapSize(a) && a[r] > a[largest]  ){
+		if( r <= getHeapSize(a)-1 && a[r] > a[largest]  ){
 			largest=r;
 		}
 		
@@ -46,11 +54,7 @@ public class Heap {
 	 * 	@return the size of the heap
 	 * */	
 	public int  getHeapSize(int[] a ){
-		int count =0;
-		for(int x:a){
-			count++;
-		}
-		return count;
+		return heapSize;
 	}
 	
 	/**
@@ -71,14 +75,27 @@ public class Heap {
 	 *	the remaining nodes of the tree and runs MAX-HEAPIFY on each one.
 	 * 
 	 * */	
-	public int[] buildHeap(int[] a){
+	public void buildHeap(int[] a){
+		heapSize=a.length;
 		for( int i = a.length/2 ; i >= 0  ; i--){
 			maxHeapify(a, i);
 		}
-		return a;
+		
 	}
 		
-	
+	/**
+	 * 
+	 *Heap Sort 
+	 * 
+	 */
+	public void heapSort(int[] a){
+		buildHeap(a);
+		for(int i=a.length-1;  i>=1; i--){
+			swap(a, 0, i);
+			heapSize--;
+			maxHeapify(a, 0);
+		}
+	}
 	
 }
 	
