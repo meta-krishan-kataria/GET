@@ -5,10 +5,8 @@ package q2;
 // class to define guest
 public class Guest {
 	
-	// variable for guest name
 	private String guestName;
-	
-	// variable for guest age
+
 	private int guestAge;
 	
 	
