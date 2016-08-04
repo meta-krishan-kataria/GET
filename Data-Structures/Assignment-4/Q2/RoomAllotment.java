@@ -91,8 +91,8 @@ public class RoomAllotment {
 	}
 
 	/**
-	 * This method computes for alloted room , if empty then returned else incremented until 
-	 * alloted room is not empty(Linear Probing Method)
+	 * allotes room based on their age if empty unless incrementes until 
+	 * got a not empty room i.e. using Linear Probing Method
 	 * 
 	 * @param roomsList
 	 * @param guestAge
