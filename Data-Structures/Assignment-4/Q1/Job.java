@@ -1,7 +1,12 @@
-
+/**
+ * Class to represent a job
+ * 
+ * */
 public class Job {
-	private int id;
-	private int priority;
+	
+	private int id;				//job id
+	private int priority;		//job priority. Higher value implies higher priority
+	
 	
 	public Job(int id, int priority) {
 		super();
