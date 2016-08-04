@@ -134,6 +134,38 @@ public class TreeMethods <E> {
 		
 	}
 	
+	/**
+	 * 
+	 * is Mirror : Recursive version
+	 * */
+	public boolean isMirrorRecursive(Node<E> t1,Node<E> t2){
+		
+		if( t1==null && t2==null )		//base condition
+			return true;
+		
+		if( t1.data.equals( t2.data ) )
+		{
+			//if equals, recur for left and right sub tree
+			//and return false is any side fails
+			if( ! isMirrorRecursive(t1.left, t2.right) )
+				return false;
+			
+			if( ! isMirrorRecursive(t1.right, t2.left)  )
+				return false;	
+			
+		}
+		else
+		{	//data not equals
+			return false;
+		}
+		
+		
+		return true;
+	}
+	
+	
+	
+	
 	
 	
 }
