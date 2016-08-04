@@ -9,25 +9,18 @@ import java.util.List;
 // Main class for Room Allotment
 public class RoomAllotment {
 
-	// buffered reader object for input and output
-	BufferedReader bufferedReader = null;
 
-	// initialized buffered reader object
-	public RoomAllotment(){
-
-		bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-	}
-
-	// entry method of program
+	
 	public static void main(String[] args){
-
+		BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+		
 		// object of roomAllotment class
 		RoomAllotment roomAllotment = new RoomAllotment();
 
 		try{
 
-			// initialized guest house object with name and total rooms
-			GuestHouse guestHouse = new GuestHouse("V Guest House", 97);
+			// initializing guest house object with name and total rooms
+			GuestHouse guestHouse = new GuestHouse("Meta Guest House", 70);
 
 			// list of rooms
 			List<Character> roomsList = guestHouse.assignRoomNumbers();
@@ -39,19 +32,21 @@ public class RoomAllotment {
 			int roomsOccupied = 0;
 
 			do{
-				// printing message
+				
 				System.out.println("Welcome to "+ guestHouse.getGuestHouseName());
 
 				// taking user input for guest name
-				String guestName = roomAllotment.getUserStringInput("Please enter your name");
+				System.out.println("Please enter your name");
+				String guestName = br.readLine();
 
 				// taking user input for guest age
-				int guestAge = roomAllotment.getUserIntegerInput("Please enter your age");
+				System.out.println("Please enter your age");
+				int guestAge = Integer.parseInt( br.readLine() );
 
 				// initialized guest with guest name and guest age
 				Guest guest = new Guest(guestName , guestAge);
 
-				// variable for room alloted 
+				//alloting room to guest
 				int roomAlloted = roomAllotment.allotRoomNumberToGuest(roomsList , guestAge , roomsOccupied);
 
 				// increment the rooms occupied variable 
@@ -60,7 +55,7 @@ public class RoomAllotment {
 				// displaying result
 				if(roomAlloted == -1){
 
-					System.out.println("Sorry " +guest.getGuestName()+" Cannot assign room.All the rooms are occupied");
+					System.out.println("Sorry " +guest.getGuestName()+" All the rooms are occupied");
 				}
 
 				else{
@@ -68,9 +63,10 @@ public class RoomAllotment {
 					System.out.println("Thank you "+ guest.getGuestName() +" for using our service. "
 							+ "\n" +"The room alloted to you is: "+roomAlloted);
 				}
-
+				
+				System.out.println("Want More rooms (Press Y to continue)");
 				// taking user permission to continue
-				userPermission = roomAllotment.getUserStringInput("Press Y or y to continue").charAt(0);
+				userPermission = br.readLine().charAt(0);
 
 			}while(userPermission == 'y' || userPermission == 'Y');
 			
@@ -85,7 +81,7 @@ public class RoomAllotment {
 			try{
 
 				// closing buffered reader stream
-				roomAllotment.bufferedReader.close();
+				br.close();
 
 			}catch(Exception ex){
 
@@ -109,77 +105,25 @@ public class RoomAllotment {
 
 			return -1;
 		}
-		// computed alloted room
+		
+		// computing alloted room
 		int allotedRoom = guestAge % roomsList.size();
 
 		// until alloted room is not empty
 		while(roomsList.get(allotedRoom) != 'E'){
 
-			// increment 
+			// if room is not empty, allotting next empty room in the order 
 			allotedRoom++;
 
 			// if greater than size of rooms then reduce it
 			allotedRoom = allotedRoom % roomsList.size();
 
 		}
-
+		//setting allotted room as filled
 		roomsList.set(allotedRoom, 'F');
 
 		return allotedRoom;
 	}
 
-	/**
-	 * This method returns the user input for string variables
-	 * 
-	 * @param message
-	 * @return user input for string variables
-	 */
-	public String getUserStringInput(String message){			
-		// variable for user input
-		String userInput = "";
-
-		try{
-
-			System.out.println(message);
-
-			// taking user input
-			userInput = bufferedReader.readLine();
-
-		}catch(Exception ex){
-
-			System.out.println("Something went wrong: "+ex.getMessage());
-			getUserStringInput(message);
-
-		}
-
-		return userInput;
-	}
-
-	/**
-	 * This method returns the user input for integer values
-	 * 
-	 * @param message
-	 * @return user input (integer)
-	 */
-	public int getUserIntegerInput(String message){
-
-		// variable for user input
-		int userInput = 0;
-
-		try{
-
-			System.out.println(message);
-
-			// taking user input
-			userInput = Integer.parseInt(bufferedReader.readLine());
-
-		}catch(Exception ex){
-
-			System.out.println("Something went wrong: "+ex.getMessage());
-			getUserIntegerInput(message);
-
-		}
-
-		return userInput;
-	}
+	
 }
