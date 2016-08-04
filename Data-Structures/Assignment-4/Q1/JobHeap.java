@@ -5,6 +5,21 @@ import java.util.List;
  * 
  * */
 public class JobHeap {
+	
+	private int heapSize;
+	
+	public JobHeap(List<Job> a){
+		heapSize=a.size();
+	}
+	
+	
+	/**
+	 * 	@return the size of the heap
+	 * */	
+	public int  getHeapSize(List<Job> a ){
+		return heapSize;
+	}
+	
 	/**
 	 * method to maintain the heap order
 	 * 
@@ -27,13 +42,13 @@ public class JobHeap {
 		
 		int largest;
 		
-		if( l <= a.size()-1 && a.get(l).getPriority() > a.get(i).getPriority()  ){
+		if( l <= getHeapSize(a)-1 && a.get(l).getPriority() > a.get(i).getPriority()  ){
 			largest=l;
 		}else{
 			largest=i;
 		}
 		
-		if( r <= a.size()-1 && a.get(r).getPriority() > a.get(largest).getPriority()  ){
+		if( r <= getHeapSize(a)-1 && a.get(r).getPriority() > a.get(largest).getPriority()  ){
 			largest=r;
 		}
 		
@@ -60,10 +75,26 @@ public class JobHeap {
 	 * builds heap from the input arraylist
 	 * @return created heap
 	 * */	
-	public List<Job> buildHeap(List<Job> a){
+	public void buildHeap(List<Job> a){
+		heapSize=a.size();
 		for( int i = a.size()/2 ; i >= 0  ; i--){
 			maxHeapify(a, i);
 		}
-		return a;
+
 	}
+	
+	/**
+	 * 
+	 *Heap Sort 
+	 * 
+	 */
+	public void heapSort(List<Job> a){
+		buildHeap(a);
+		for(int i=a.size()-1;  i>=1; i--){
+			swap(a, 0, i);
+			heapSize--;
+			maxHeapify(a, 0);
+		}
+	}
+	
 }
