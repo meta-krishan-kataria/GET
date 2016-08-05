@@ -20,6 +20,29 @@ public class LinkedListInsertion < E >{
 	}
 	
 	
+	/**
+	 * inserts the element e in sorted liked list in the appropriate position
+	 * VERSION 2 (Recursive)
+	 * */
+	void insertRecursive(LinkedList<E> llist,int index,E item){
+	
+		//comparing the element at current index 
+
+		if(  (  (Comparable)llist.get(index)  ).compareTo(item) < 0 ){	//item is greater than current element
+			
+			insertRecursive(llist, ++index, item);
+			
+		}else{
+			
+			llist.add( index, item);
+			return;
+		}
+	}
+			
+
+	/*
+	method to demonstrate insertion
+	*/
 	public static void main(String[] args) {
 		LinkedList<Integer> llist=new LinkedList<Integer>();
 		
@@ -34,7 +57,13 @@ public class LinkedListInsertion < E >{
 
 		//inserting 12 in sorted linked list
 		LinkedListInsertion<Integer> insertion=new LinkedListInsertion<Integer>();
+		
 		insertion.insert(llist, new Integer(12) );
+		//printing resultant
+		System.out.println(llist);
+		
+		//inserting 17 (using recursive method)
+		insertion.insertRecursive(llist, 0, new Integer(17));
 		
 		//printing resultant
 		System.out.println(llist);
