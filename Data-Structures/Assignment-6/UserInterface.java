@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -36,7 +37,7 @@ public class UserInterface {
 	
 	public char askChoice(){
 		sc=new Scanner(System.in );
-		System.out.println("Fill more entries");
+		System.out.println("\nFill more entries ? (y/n)");
 		return sc.nextLine().charAt(0);
 	}
 	
@@ -46,6 +47,10 @@ public class UserInterface {
 	
 	void printSet(Set<Employee> eSet){
 		System.out.println(eSet);
+	}
+	
+	void printList(List<Employee> list){
+		System.out.println(list);
 	}
 	
 }
