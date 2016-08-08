@@ -18,11 +18,16 @@ public class EmployeeRegistration {
 			boolean b=eSet.add( userInterface.getEmployeeEntry() );
 			
 			if(b==true){
-				Collections.sort( new ArrayList(eSet) );
-				userInterface.printSet( eSet );
+				List<Employee> temp;
 				
-				Collections.sort( new ArrayList(eSet), new EmployeeNameComparator() );
-				userInterface.printSet( eSet );
+				System.out.println("\nNatural soriting");
+				temp=new ArrayList<Employee>(eSet);
+				Collections.sort( temp );
+				userInterface.printList(temp);
+				
+				System.out.println("\nSorting based on name");
+				Collections.sort( temp, new EmployeeNameComparator() );
+				userInterface.printList(temp);
 				
 				choice=userInterface.askChoice();
 			}else{
