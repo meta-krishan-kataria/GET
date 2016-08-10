@@ -1,9 +1,13 @@
 
 public class LinearSort {
+	
+	
 	public static int[] sort(int[] input){
 		if( findMaxDigit(input) > 2 ){
-			return RadixSort.sort(input);
+			System.out.println("Using Radix sort");
+			return RadixSort.radixSort(input);
 		}else{
+			System.out.println("Using Count sort");
 			return CountSort.sort(input);
 		}
 		
