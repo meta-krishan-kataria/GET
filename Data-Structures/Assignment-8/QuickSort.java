@@ -2,7 +2,7 @@ public class QuickSort implements Sorting{
 	
 	//begins the qsort method
 	public static void sort(int[] input){
-		qsort(input, 0, input.length);
+		qsort(input, 0, input.length-1);
 	}
 	
 	//Quicksort algorithm implementation 
