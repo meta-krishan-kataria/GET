@@ -36,9 +36,12 @@ SELECT category, COUNT(member_id) AS 'Number Of Members' FROM members GROUP BY c
 /* To display information on all the books issued. The result should have issue date, 
  * accessin number, member id, member name and return date. If book is not returned,
  * keep the return date column blank. */
-SELECT bi.issue_dt AS 'Issue Date', bi.accession_number AS 'Accession Number',
-    bi.member_id AS 'Member ID', br.return_dt FROM book_issue bi LEFT JOIN
-        book_return br ON bi.accession_number = br.accession_number;
+SELECT bi.issue_dt , bi.accession_number, bi.member_id, IFNULL(br.return_dt,'Not Returned')
+FROM book_issue bi
+INNER JOIN book_return
+    ON bi.issue_dt=br.issue_dt AND 
+        bi.accession_number=br.accession_number AND
+        bi.member_id=br.member_id;
 
 /* Assignment 2 */
 
