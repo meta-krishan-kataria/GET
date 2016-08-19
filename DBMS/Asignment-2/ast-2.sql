@@ -29,8 +29,9 @@ SELECT category, COUNT(member_id) AS 'Number Of Members' FROM members GROUP BY c
 
 /* To display name of those members who belongs to the same category
  * as to which 'Keshav Sharma' belongs */
-SELECT m.member_name FROM members m INNER JOIN members c 
-    ON m.category = c.category WHERE c.member_name='Keshav Sharma';
+ SELECT member_name FROM members
+    WHERE category=(SELECT category FROM members WHERE member_name='Keshav Sharma');
+
 
 /* To display information on all the books issued. The result should have issue date, 
  * accessin number, member id, member name and return date. If book is not returned,
