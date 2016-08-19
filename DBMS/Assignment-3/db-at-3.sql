@@ -28,34 +28,31 @@ SELECT member_name, LENGTH(member_name) AS 'Length' FROM members
 SELECT COUNT(accession_number) FROM book_issue;
 
 
-/* Assignment 1 */
+/* Assignment 2 */
 
-/* Selecting the databse */
+/* Selecting the database */
 USE LIS;
 
-/* To display information on books issued for more than 2 months.
- * It should include member name, member id, title name, accession number
- * issue date, due date and issued for how many months and be sorted on 
- * member name and then on title name. */
-SELECT m.member_name AS 'Member Name', bi.member_id AS 'Member ID',
-    t.title_name AS 'Title', bi.accession_number AS 'Accession Number',
-    bi.issue_dt AS 'Issue Date', bi.due_dt AS 'Due Date', br.return_dt AS 'Return Date',
-    TIMESTAMPDIFF(MONTH, bi.issue_dt, IFNULL(br.return_dt, CURRENT_TIMESTAMP)) AS 'Number of Months' 
-    FROM book_issue bi
-    INNER JOIN members m ON bi.member_id = m.member_id
-    INNER JOIN books b ON bi.accession_number = b.accession_number
-    INNER JOIN titles t ON b.title_id = t.title_id
-    LEFT JOIN book_return br ON br.accession_number = bi.accession_number 
-        AND br.member_id = bi.member_id AND br.issue_dt = bi.issue_dt
-    WHERE TIMESTAMPDIFF(MONTH, bi.issue_dt, IFNULL(br.return_dt, CURRENT_TIMESTAMP)) > 2 
-    ORDER BY m.member_name, t.title_name;
+/* To display subjectwise information on number of books purchased.
+ * It should include subject name, subject id and number of books purchased */
+SELECT s.subject_id AS 'Subject ID', s.subject_name AS 'Subject Name',
+    COUNT(b.accession_number) AS 'Number of books' FROM subjects s
+    INNER JOIN titles t ON s.subject_id = t.subject_id
+    INNER JOIN books b ON t.title_id = b.title_id
+    GROUP BY s.subject_id;
     
-/* To display those rows from members table having maximum length for member name */
-SELECT member_name, LENGTH(member_name) AS 'Length' FROM members 
-    WHERE LENGTH(member_name) = (SELECT MAX(LENGTH(member_name)) FROM members);
-    
-/* To display count of number of books issued so far */
-SELECT COUNT(accession_number) FROM book_issue;
+/* To display those rows from book_issue table where a book can be returned 
+ * after 2 months i.e. difference between issue and due date is greater than 2 months*/
+SELECT issue_dt AS 'Issue Date', due_dt AS 'Due Date',
+    accession_number AS 'Book ID', member_id AS 'Member ID'
+    FROM book_issue WHERE TIMESTAMPDIFF(MONTH, issue_dt, due_dt) > 2;
+
+/* To display the list of books having price greater than the 
+ * minimum price of books purchased so far */
+SELECT accession_number AS 'Book Id', title_id AS 'Title Id',
+    purchase_dt AS 'Purchase Date', price AS 'Price',
+    status AS 'Status' FROM books WHERE price > 
+    (SELECT MIN(price) FROM books);
 
 /* Assignment 3 */
 
