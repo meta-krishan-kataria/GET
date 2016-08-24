@@ -1,4 +1,3 @@
-
 package jdbc;
 import java.util.*;
 
@@ -9,22 +8,22 @@ public class DriverClass {
 		DataHandler dh=new DataHandler();
 		
 		//task-1 books by author name
-		String authorName="John";
+		String authorName="Bipul Jain";
 		List<Book> books=dh.getBooksByAuthor(authorName);
 		System.out.println(books);
 		
 		//task-2 number of available book to be issued 
-		String title="Complete Refernce";
+		String title="Make It Happen";
 		
-		int availableCount=dh.getNumberOfAvailableBooks(title);
+		int availableCount=dh.getNumberOfTotalBooks(title);
 		int totalbooks=dh.getNumberOfAvailableBooks(title);
 		
 		System.out.println("\n"+totalbooks+" Total books are there having title " + title);
-		System.out.println("\n"+availableCount+"not issued");
+		System.out.println("\n"+availableCount+" not issued");
 		
 		//task-3 deleting books not issued for one year 
 		int numOfDeletedBooks=dh.deleteBooks();
-		System.out.println( numOfDeletedBooks +"Books deleted" );
+		System.out.println( numOfDeletedBooks +" Books deleted" );
 		
 	}
 
