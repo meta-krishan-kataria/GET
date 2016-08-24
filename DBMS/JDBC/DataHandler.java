@@ -19,7 +19,7 @@ public class DataHandler {
 		try {
 			//registering for db ,opening connection and creating statement
 			Class.forName(JDBC_DRIVER);
-			con=DriverManager.getConnection(DB_URL);
+			con=DriverManager.getConnection(DB_URL,"root","root");
 			st=con.createStatement();
 		} catch (ClassNotFoundException e) {
 			
@@ -38,7 +38,8 @@ public class DataHandler {
 		String query="SELECT t.title_name "
 					+"FROM titles t "
 					+"INNER JOIN title_author ta ON t.title_id=ta.title_id "
-					+"WHERE ta.author_id=(SELECT author_id FROM authors WHERE auther_name="+authorName+" )";
+					+"WHERE ta.author_id=(SELECT author_id FROM authors WHERE author_name LIKE '"+authorName+"' )";
+		System.out.println(query);
 		
 		try 
 		{
@@ -65,23 +66,26 @@ public class DataHandler {
 	//task 2 getting number of available book to be issued 
 	public int getNumberOfAvailableBooks(String title){
 		
-		return getNumberOfTimesBookIssued(title) - getNumberOfTimesBookReturned(title);
+		return getNumberOfTimesBookIssued(title) - getNumberOfTimesBookReturned(title) ;
 		
 	}
+	
 	//
-	public int getNumberOfTimesBookIssued(String title){
+	public int getNumberOfTotalBooks(String title){
 		ResultSet rs;
 		
-		String query="SELECT COUNT(accession_no) "
-					+"FROM book_issues " 
-					+"WHERE accession_no IN (SELECT accession_no FROM books " 
+		String query="SELECT COUNT(accession_number) "
+					+"FROM books " 
+					+"WHERE accession_number IN (SELECT accession_number FROM books " 
                             +"WHERE title_id=(SELECT title_id FROM titles "
-                            	+"WHERE title_name LIKE "+title+" )  )";
+                            	+"WHERE title_name LIKE '"+title+"' )  )";
+		System.out.println(query);
+		
 		try 
 		{
 			rs=st.executeQuery(query);
 			
-			if(rs != null){
+			if(rs.next()){
 				return rs.getInt(1);
 			}else{
 				return 0;
@@ -96,22 +100,22 @@ public class DataHandler {
 		
 	}
 	
-	
 	//
-	public int getNumberOfTimesBookReturned(String title){
+	public int getNumberOfTimesBookIssued(String title){
 		ResultSet rs;
 		
-		String query="SELECT COUNT(accession_no) "
-					+"FROM book_return " 
-					+"WHERE accession_no IN (SELECT accession_no FROM books " 
+		String query="SELECT COUNT(accession_number) "
+					+"FROM book_issue " 
+					+"WHERE accession_number IN (SELECT accession_number FROM books " 
                             +"WHERE title_id=(SELECT title_id FROM titles "
-                            	+"WHERE title_name LIKE "+title+" )  )";
+                            	+"WHERE title_name LIKE '"+title+"' )  )";
+		System.out.println(query);
+		
 		try 
 		{
 			rs=st.executeQuery(query);
 			
-			
-			if(rs != null){
+			if(rs.next()){
 				return rs.getInt(1);
 			}else{
 				return 0;
@@ -119,7 +123,37 @@ public class DataHandler {
 			
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			//e.printStackTrace();
+			return 0;
+		}
+		
+		
+	}
+	
+	
+	//
+	public int getNumberOfTimesBookReturned(String title){
+		ResultSet rs;
+		
+		String query="SELECT COUNT(accession_number) "
+					+"FROM book_return " 
+					+"WHERE accession_number IN (SELECT accession_number FROM books " 
+                            +"WHERE title_id=(SELECT title_id FROM titles "
+                            	+"WHERE title_name LIKE "+title+" )  )";
+		try 
+		{
+			rs=st.executeQuery(query);
+			
+			
+			if(rs.next()){
+				return rs.getInt(1);
+			}else{
+				return 0;
+			}
+			
+		} catch (SQLException e) {
+			
+			//e.printStackTrace();
 			return 0;
 		}
 		
@@ -132,15 +166,15 @@ public class DataHandler {
 	public int deleteBooks(){
 		ResultSet rs;
 		
-		String query="DELETE FROM books WHERE accession_no NOT IN "
-					+" (SELECT accession_no FROM book_issue WHERE TIMESTAMPDIFF(MONTH,NOW(),issue_dt) < 12 )";
+		String query="DELETE FROM books WHERE accession_number NOT IN "
+					+" (SELECT accession_number FROM book_issue WHERE TIMESTAMPDIFF(MONTH,NOW(),issue_dt) < 12 )";
 		try 
 		{
 			return st.executeUpdate(query);
 			
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			//e.printStackTrace();
 			return 0;
 		}
 	}
@@ -149,4 +183,3 @@ public class DataHandler {
 	
 	
 }
-
