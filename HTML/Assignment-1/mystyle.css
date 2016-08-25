@@ -1,0 +1,77 @@
+@CHARSET "ISO-8859-1";
+
+body{
+	margin: 0px;		/* bcoz there is some default margin  */
+	/*padding: 20px;*/		
+}
+#body2{
+	margin: auto;
+	margin: 0px;
+	padding: 30px;
+	display: block;
+	
+	max-width: 1000px;
+}
+
+#header{
+	position: fixed;	/*check on scroll*/
+	
+	width: 100%;
+	height: 70px;
+	
+	border: 2px;
+	/*  background-color: #70b8b8; */
+	 display: block;		/****/
+}
+
+.htmllogo{
+	position: relative;
+	height: 50px;
+	left: 30px;
+}
+
+#horizontal_menu{
+
+    float: right;
+    display: inline-block;
+    
+}
+
+
+#html5{
+	margin: auto;	/*to align center*/
+	
+}
+
+#features{
+	 display: block;
+    margin: auto;
+    width: 80%;
+	
+}
+
+h1,h3 {
+    text-align: center;
+}
+
+p{
+	display: block;
+	
+	padding-left: 20px;
+	padding-right: 20px;
+}
+#footertext{
+	margin: auto;
+	text-align: center;
+}
+
+#tablediv{
+	
+	display: block;
+}
+
+#tablecoldiv{
+	padding: 15px;
+	display: inline-table;
+	max-width: 300px;
+}
