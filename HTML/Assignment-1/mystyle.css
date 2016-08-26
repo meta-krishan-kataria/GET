@@ -1,10 +1,16 @@
 @CHARSET "ISO-8859-1";
 
 body{
-	margin: 0px;		/* bcoz there is some default margin  */
+	/*margin: 0px;	*/	/* bcoz there is some default margin  */
 	/*padding: 20px;*/		
+	margin: auto;				/*  ?? contre align body */
+	vertical-align: middle;
+	
 }
 #body2{
+	position: relative;
+	margin-top:80px;
+	
 	margin: auto;
 	margin: 0px;
 	padding: 30px;
@@ -39,7 +45,7 @@ body{
 
 
 #html5{
-	margin: auto;	/*to align center*/
+	margin: auto;	/*to align center-----not working*/
 	
 }
 
@@ -74,4 +80,8 @@ p{
 	padding: 15px;
 	display: inline-table;
 	max-width: 300px;
+}
+
+#formdiv{
+	margin: 0 auto;
 }
