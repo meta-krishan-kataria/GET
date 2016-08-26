@@ -1,0 +1,47 @@
+@CHARSET "ISO-8859-1";
+
+body{
+	background-color: #e0e6fe;
+	margin: 0px;
+}
+
+.container{
+	 background-color: #ffffff; 
+	width: 90%;
+	height:600px;
+	margin: 8px;
+	padding: 8px;
+}
+
+#header{
+	width: auto;
+	height: 70px;
+	margin: 10px;
+	position:inherit;
+	
+	background-color: #8cc6ff;
+	border: 3px  ;
+	border-color:#7979ff; 
+	border-style: solid;
+	z-index: 7;
+	
+}
+
+#profilepic{
+	position:relative;
+	margin:20px;
+	float:left;
+	
+	display : inline-block;
+	border:2px;
+	padding:5px;
+	box-shadow: 2px 2px 2px ;
+}
+
+
+#profiledata{
+	position:relative;
+	display : inline-block;
+	border:1px;
+	box-shadow: 1px 1px 1px ;
+}
