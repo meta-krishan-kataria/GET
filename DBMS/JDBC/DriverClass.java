@@ -16,7 +16,7 @@ public class DriverClass {
 		String title="Make It Happen";
 		
 		int availableCount=dh.getNumberOfTotalBooks(title);
-		int totalbooks=dh.getNumberOfAvailableBooks(title);
+		int totalbooks=dh.getNumberOfBooksCurrentyIssued(title);
 		
 		System.out.println("\n"+totalbooks+" Total books are there having title " + title);
 		System.out.println("\n"+availableCount+" not issued");
