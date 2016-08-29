@@ -63,8 +63,8 @@ public class DataHandler {
 	}
 	
 	
-	//task 2 getting number of available book to be issued 
-	public int getNumberOfAvailableBooks(String title){
+	//task 2 getting number of books currently issued
+	public int getNumberOfBooksCurrentyIssued(String title){
 		
 		return getNumberOfTimesBookIssued(title) - getNumberOfTimesBookReturned(title) ;
 		
