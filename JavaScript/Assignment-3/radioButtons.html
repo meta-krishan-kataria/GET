@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	function setPosition1(position){
+		document.getElementById("p1").innerHTML=position;
+		moveCircle();
+		
+	}
+	function setPosition2(position){
+		document.getElementById("p2").innerHTML=position;
+		moveCircle();
+		
+	}
+	
+	function moveCircle(){
+		//changing horizontal position
+		var radios = document.getElementsByName('r2');
+		var horizontal;
+		
+		for (var i = 0; i < 2; i++) {
+		    if (radios[i].checked) {
+		    	horizontal=document.getElementById("r2").value;
+		        break;
+		    }
+		}
+		document.getElementById("circle").style.float=hozizontal;		// left/right
+		
+	/* 	//changing vertical position
+		var vertical=document.getElementById("r1").value;
+		var topMargin;
+		if(vertical=='top'){
+			topMargin=5;
+		}else if(vertical=='bottom'){
+			topMargin=50;
+		}
+		
+		document.getElementById("circle").style.margin-top=topMargin; */
+		
+		
+	}
+
+
+</script>
+
+<style type="text/css">
+	#circle{
+		float:left;
+		margin-top: 0px;
+	}
+
+</style>
+
+
+
+
+</head>
+<body>
+	<div id="radiobox">
+		Top<input type="radio" name="r1" value="top"  onclick="setPosition1('Top')"   checked><br>
+		Bottom<input type="radio" name="r1" value="bottom"  onclick="setPosition1('Bottom')"><br>
+		<br>
+		Left<input type="radio" name="r2" value="left"  onclick="setPosition2('Left')"  checked><br>
+		Right<input type="radio" name="r2" value="right"  onclick="setPosition2('Right')"><br>
+	</div>
+	<br>
+	<br>
+	<p id="p1">Position 1</p>
+	
+	<p id="p2">Position 2</p>
+	<br>
+
+	<svg height="100" width="100" id="circle">
+  		<circle cx="50" cy="50" r="40"  stroke-width="3"
+			fill="red" />
+	</svg>
+
+</body>
+</html>

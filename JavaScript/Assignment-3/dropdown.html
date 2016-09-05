@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	
+	<style type="text/css">
+		#rj-citylist{
+			display: none;
+		}
+		#pb-citylist{
+			display: none;
+		}
+		#city{
+		margin-top:70px;
+			
+			background-color: green;
+		}
+	</style>
+	
+	<script type="text/javascript">
+		
+		function setRaj(){
+			document.getElementById("pb-citylist").style.display="none";
+			document.getElementById("rj-citylist").style.display="inline-block";
+	
+		}
+		
+		function setPunjab(){
+			document.getElementById("rj-citylist").style.display="none";
+			document.getElementById("pb-citylist").style.display="inline-block";
+	
+		}
+		function dropMenu(){
+			if(document.getElementById('rj').checked) {
+				  setRaj();
+				}else if(document.getElementById('pb').checked) {
+				  	setPunjab();
+			}
+		}	
+	
+	</script>
+</head>
+<body>
+
+Choose State
+<br>
+<br>
+<label>Rajasthan
+	<input type="radio" name="r1"  id="rj" value="rj"  onclick="setRaj()">
+</label> 
+<br>
+<label>Punjab
+	<input type="radio" name="r1"  id="pb" value="rb"  onclick="setPunjab()">
+</label>  
+<br>
+ 
+<div id="city" onmouseover="dropMenu()">
+City
+	<select id="pb-citylist">
+		<option>--select city--</option>
+		<option>Ludhiana</option>
+		<option>Chandigarh</option>
+		<option>Jalandhar</option>
+	</select>
+	
+	
+	<select id="rj-citylist">
+		<option>--select city--</option>
+		<option>Jaipur</option>
+		<option>Kota</option>
+		<option>Bikaner</option>
+		<option>Jodhpur</option>
+	</select>
+
+</div>
+
+
+</body>
+</html>
