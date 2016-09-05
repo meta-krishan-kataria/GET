@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<script>
+		function myFunction() {
+		    //getting numbers
+		    var num1=Number(document.getElementById("num1").value);
+		    var num2=Number(document.getElementById("num2").value);
+		    var num3=Number(document.getElementById("num3").value);
+		    
+		    //finding max
+		    var max=findMaxOfThree(num1,num2,num3);
+		    //printing
+		    alert("Maximum is "+max);                   
+		    document.getElementById("result").innerHTML=document.getElementById("result").innerHTML+max;
+		}
+	
+		function findMaxOfThree(a,b,c){
+		  if(a>b){
+		    if(a>c ){
+		      return a;
+		    }else{
+		      return c;
+		    }  
+		  }else{
+		    if(b>c){
+		      return b;
+		    }else{
+		      return c;
+		    }
+		  }
+		}
+	</script>
+
+	<p>Click the button</p>
+	
+	<form name=f1>
+		<input type="number" value="5" id="num1" /> <input type="number"
+			value="7" id="num2" /> <input type="number" value="2" id="num3" />
+
+		<button onclick="myFunction()">Find max</button>
+	</form>
+	
+	<p id="result">Maximum is</p>
+
+</body>
+</html>
+
