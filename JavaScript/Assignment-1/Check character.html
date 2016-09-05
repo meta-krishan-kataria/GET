@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title></title>
+</head>
+<body>
+
+	<script type="text/javascript">
+		var str=prompt("Please enter any character");
+		var c=str.charAt(0);
+		
+		if(str.length>1){
+			alert("Character bola tha na");
+		}
+		
+		
+		if( c=='a' || c=='e' || c=='i' || c=='o' || c=='u'  ){
+			alert(c+" is vowel");
+		}else if( isNaN(c) ){
+			alert(c+" is consonant");
+		}else{
+			alert("Invalid input");
+		}
+	
+	</script>
+
+</body>
+</html>
