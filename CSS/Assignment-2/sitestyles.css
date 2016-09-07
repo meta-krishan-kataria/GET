@@ -1,9 +1,9 @@
 *{
-	margin: 0;
+	margin: 0px;
 }
 
 header{
-	min-height: 25px;
+	height:auto;
 	background-color: #004671;
 	color: white;
 	padding-left: 15px;
@@ -11,8 +11,132 @@ header{
 	
 }
 
+
+#boldtextdiv{
+	color:white;
+	border: 1px solid white;
+	max-width: 300px;
+	margin : auto;
+	margin-top: auto;
+}
+
+#strip1{
+	width:auto;
+	min-height: 100px;
+	background-color: #ffffff;
+	padding: 10px;
+	margin: 0px auto;
+	
+	text-align: center;
+	
+}
+
+#strip2{
+	width:auto;
+	min-height: 120px;
+	background-color: #4662ac;
+	
+}
+#formdiv{
+	padding: 10px;
+	padding-left:20px;
+	width:auto;
+	min-height: 100px;
+	background-color: #ffffff;
+	
+}
+
+footer{
+	min-height: 20px;
+	padding: 2px;
+	background-color: black;
+	color : white;
+	
+	float: bottom;
+	text-align: center;
+}
+footer p{
+	color: #efefef;
+}
+.box{
+	width: 23%;
+	min-width:100px;
+	
+	min-height: 80px;
+	/* border: 1px solid 	#383838; */
+	margin:3px;
+	
+	display: inline-block;
+	background-color: white;
+	border: 1px solid #ebebeb;
+	
+}
+
+#mybutton{
+	background-color: #ffffff;
+	color:#6fafff;
+	/* box-shadow: 0px 0px 10px; */
+	width: 150px;
+	height: 30px;
+	border-radius:5px;
+	
+}
+/*white*/
+h2{
+	padding-top:5px;
+	margin:5px;
+	text-align: center;
+	color: #f2f2f2;
+}
+/* black */
+h3,h4{
+	padding-top:10px;
+	text-align: center;
+	color: #4b4b4b;
+}
+
+.strip-box{
+	display:inline-block;
+	padding: 10px;
+	
+	
+	width: 40%;
+	min-width:300px;
+	
+	min-height: 150px;
+	/* border: 1px solid black; */
+}
+
+
+form{
+	padding-left: 50px;
+	
+}
+input{
+	margin: 3px;
+}
+ img{
+ 	margin-left: 50px;
+ }
+header h2{
+	float: left;
+}
+.clear{
+	clear: both;
+}
+p{
+	color: #252525;
+}
+#strip2 p{
+	color: #f7f7f7;
+}
 header nav ul li{
 	display: inline;
+	margin: 2px;
+}
+header nav ul{
+	padding-top: 5px;
+	float: right;
 }
 header h3{
 	display: inline;
@@ -30,71 +154,10 @@ a:VISITED{
 }
 .topdiv{
 	width: auto;
-	min-height: 300px;
+	min-height: 250px;
 	background-color: #6fafff;
-	padding : 10px;
+	
+	padding-top:60px;
 	
 	text-align: center;
 }
-
-#boldtextdiv{
-	color:white;
-	border: 1px solid white;
-	max-width: 300px;
-	margin : auto;
-	margin-top: auto;
-}
-
-#strip1{
-	width:auto;
-	min-height: 100px;
-	background-color: #eaeaea;
-	padding: 10px;
-	margin:auto;
-	
-	text-align: center;
-	
-}
-
-#strip2{
-	width:auto;
-	min-height: 120px;
-	background-color: #4662ac;
-	
-}
-#formdiv{
-	width:auto;
-	min-height: 150px;
-	background-color: #eaeaea;
-	
-}
-
-footer{
-	min-height: 20px;
-	padding: 2px;
-	background-color: black;
-	color : white;
-	
-	float: bottom;
-}
-
-.box{
-	width: 250px;
-	height: 80px;
-	/* border: 1px solid 	#383838; */
-	margin:3px;
-	
-	display: inline-block;
-	background-color: white;
-	box-shadow: 0px 0px 7px;
-	
-}
-
-#mybutton{
-	background-color: #f8f8f8;
-	/* box-shadow: 0px 0px 10px; */
-	width: 100px;
-	height: 30px;
-	
-}
-
