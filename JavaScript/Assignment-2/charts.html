@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Insert title here</title>
+
+<style>
+div {
+	/* border: 1px solid black; */
+	margin: 20px; width : 40px;
+	height: 350px;
+	display: inline-block;
+	width: 40px;
+}
+</style>
+</head>
+<body>
+	<button onclick="printChart(4,2,3,5)">Create Chart</button>
+	<br>
+	<br>
+	<div id="a"></div>
+	<div id="b"></div>
+	<div id="c"></div>
+	<div id="d"></div>
+
+
+
+
+	<script type="text/javascript">
+	function printChart(){
+		  var num1=Number(prompt("Enter number "));
+		  var num2=Number(prompt("Enter number "));
+		  var num3=Number(prompt("Enter number "));
+		  var num4=Number(prompt("Enter number "));
+		  
+		  makeChart(num1,num2,num3,num4);
+		}
+
+		function createArray(size,numOfStars){
+		  //new array
+		  var arr=[];
+		  //filling spaces 
+		  for(var i=1; i <= size-numOfStars; i++){
+		    arr.push('-');      //push appends new element to the end of array
+		  }
+		  //filling stars *
+		  for(var i=1; i <= numOfStars; i++){
+		    arr.push('*');      
+		  }
+		  //returning array
+		  //alert(arr);
+		  return arr;
+		}
+
+		function makeChart(num1,num2,num3,num4){
+
+		  //getting max number
+		  var maxNum=Math.max(num1,num2,num3,num4);
+		  
+		  //creating arrays
+		  var arr1=createArray(maxNum,num1);
+		  var arr2=createArray(maxNum,num2);
+		  var arr3=createArray(maxNum,num3);
+		  var arr4=createArray(maxNum,num4);
+
+		  //printing bars
+		  printBar("a",arr1);
+		  printBar("b",arr2);
+		  printBar("c",arr3);
+		  printBar("d",arr4); 
+		}  
+
+		function printBar(barId,array){
+		  //alert("print barfunc"); 
+		  var bar=document.getElementById(barId);
+		  for(var i=0; i<array.length; i++){
+		      bar.innerHTML+=array[i];
+		      bar.innerHTML+="<br>";    
+		  }   
+		  bar.innerHTML+=barId;
+		}
+
+	
+	
+	
+	</script>
+
+
+</body>
+</html>
