@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="stylo.css">
+<link rel="stylesheet" type="text/css" href="form.css">
+
+<title>Registration Page</title>
+
+</head>
+
+<body>
+	<script src="registrationForm.js">
+    
+    </script>
+
+
+
+
+	<h2>Register here</h2>
+	<div id="main">
+		<form name="regform" method=post action="RegistrationServlet" align="left">
+			<br>
+			<div id="second">
+				<h1>
+					
+						<u> REGISTER HERE</u>
+					
+				</h1>
+
+
+				<table border="0">
+					<thead>
+						<tr>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><label>Name:</label></td>
+							<td><input type=text name="name" id="nm"
+								placeholder="Enter Name"></td>
+						</tr>
+						<tr>
+							<td><label>Password:</label></td>
+							<td><input type=password name="pswd" id="pwd" placeholder="Password"></td>
+						</tr>
+						<tr>
+							<td><label>Confirm Password:</label></td>
+							<td><input type=password name="cpwd" id="cpwd" placeholder="Password"></td>
+						</tr>
+						<tr>
+							<td><label>Gender:</label></td>
+							<td><input type=radio name="gender" value=1 checked>Male
+								<input type=radio name="gender" value=2>Female</td>
+						</tr>
+						<tr>
+							<td><label>College:</label></td>
+							<td><select name="college">
+									<option value="pce">PCE
+									<option value="piet">PIET
+									<option value="pgi">PGI
+							</select></td>
+						</tr>
+						<tr>
+							<td><label> Year:</label></td>
+							<td><select name="year">
+									<option value="1">1
+									<option value="2">2
+									<option value="3">3
+									<option value="4">4
+							</select></td>
+						</tr>
+						<tr>
+							<td><label>Registration No.:</label></td>
+							<td><input type=text name="regno" id="regno"><br></td>
+						</tr>
+
+						<tr>
+
+							<td><br>
+							<br>
+							<input type="submit"  value="Register"></td>
+							<td><br>
+							<br>
+							<input type="reset" value="Clear"></td>
+						</tr>
+					</tbody>
+				</table>
+				<br>
+		</form>
+	</div>
+
+
+
+</body>
+
+</html>
