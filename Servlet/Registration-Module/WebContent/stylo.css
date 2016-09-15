@@ -1,0 +1,257 @@
+/* 
+    Document   : stylo
+    Created on : Oct 31, 2014, 9:25:09 AM
+    Author     : Administrator
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+/* Stylesheet 1: */ 
+body { 
+    font: 100% Lucida Sans; 
+    margin: 1px; 
+    line-height: 26px; 
+    font-family: "Courier New", Courier, monospace;
+    background-color:rgb(248,248,248);
+    
+}
+
+.container { 
+    min-width: 900px; 
+}
+
+.wrapper {
+    position: relative; 
+    overflow: auto;
+}
+
+#top, #sidebar, #bottom, .menuitem { 
+    border-radius:1px; 
+    margin: 1px; 
+}
+
+#top {
+    background-color: #84c754; 
+     background:#333;
+    height:75px;
+   color:white;
+       padding: 10px;
+    margin: 10px 10px;
+        -moz-box-shadow: 5px 5px 2px #888;
+    -webkit-box-shadow: 0 0 2px#888;
+    box-shadow: 0 5px 0 #999999;
+    text-shadow: 1px 1px 1px #ccc;
+    
+}
+#top2 {
+    background-color: #84c754; 
+    color: #ffffff; 
+    height:120px;
+    
+    
+    
+}
+
+#menubar {
+    width: 200px;
+    float: left;
+    border-right-width:3px;
+    
+}
+
+#main {
+    padding: 10px;
+    margin: 0 40px;
+    
+    
+}
+#main2 {
+    padding: 10px;
+    margin: 0 400px;
+    width: 500px;
+    height:400px;
+    border: 1px solid #d4d4d4;
+    background-color: #f1f1f1;
+}
+
+#kkques1 {
+    padding: 10px;
+    margin: 0 10px;
+    width: 725px;
+    height:225px;
+    border: 2px solid rgb(205,205,205);
+    background-color: rgb(248,248,248);
+}
+#kkques2 {
+    padding: 10px;
+    margin: 0 10px;
+    width: 725px;
+    height:225px;
+    border: 2px solid rgb(205,205,205);
+    background-color: rgb(229,229,229);
+}
+#st {
+    padding: 10px;
+    margin: 0 10px;
+    width: 400px;
+    height:120px;
+    border: 2px solid rgb(205,205,205);
+    background-color: rgb(248,248,248);
+}
+
+#kkques1rs {
+    padding: 10px;
+    margin: 0 10px;
+    width: 725px;
+    height:350px;
+    border: 2px solid rgb(205,205,205);
+    background-color: rgb(248,248,248);
+}
+#kkques2rs {
+    padding: 10px;
+    margin: 0 10px;
+    width: 725px;
+    height:350px;
+    border: 2px solid rgb(205,205,205);
+    background-color: rgb(229,229,229);
+}
+#kkgeneraldiv{
+     border: 1px solid #d4d4d4;
+    
+    color:rgb(6,33,63);
+    padding: 20px;
+    margin: 30 30px;
+    width: 600px;
+    height:400px;
+    border: 2px solid rgb(205,205,205);
+    background-color: rgb(229,229,229);
+}
+
+
+#main3 {
+
+  
+
+    border: 1px solid #d4d4d4;
+    
+    color:rgb(6,33,63);
+}
+
+#sidebar {
+    background-color: #32a4e7; 
+    color: #ffffff;
+    width: 180px;
+    float:right;
+    
+  
+  
+    position: absolute;
+    height:available;
+}
+#nav {
+    background-color: #32a4e7; 
+    color: #ffffff;
+    width: 60px;
+    float:right;
+    
+    height:400px;
+    
+  
+}
+#bottom {
+    border: 1px solid #d4d4d4;
+    background-color: #f1f1f1;
+    text-align: center; 
+    padding: 10px; 
+    font-size: 70%; 
+    line-height: 14px;
+    text-align: center;
+    clear:both;
+    
+}
+
+#top h1, #top p, #menulist {
+    margin: 0; padding: 0;
+}
+
+.menuitem {
+    background-color:lightsteelblue; 
+    border: 10px;
+    list-style-type: none; 
+    padding: 2px; 
+    cursor: pointer;
+    color:rgb(6,33,63);
+    
+    
+}
+
+.menuitem:hover {
+    background-color: #ffffff; 
+}
+
+a {
+    color: #000000; 
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+
+root { 
+    display: block;
+}
+
+.info, .success, .warning, .error {
+    margin:50px auto 0;
+    border: 3px solid;
+  
+    padding:15px 20px 15px 55px;
+    width: 500px;
+   
+    font: bold 12px verdana;
+    -moz-box-shadow: 0 0 5px #888;
+    -webkit-box-shadow: 0 0 5px#888;
+    box-shadow: 10px 10px 5px #999999;
+    text-shadow: 2px 2px 2px #ccc;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    font-family:'Raleway',sans-serif;
+}
+.info {
+    color: #00529B;
+    background: #BDE5F8 url("info.jpg") no-repeat 10px center;
+}
+.success {
+    color: #4F8A10;
+    background: #DFF2BF url("check.jpg") no-repeat 10px center;
+}
+.warning {
+    color: #9F6000;
+    background: #FEEFB3 url("warning.jpg") no-repeat 10px center;
+}
+.error {
+    color: #D8000C;
+    background: #FFBABA url("error.jpg") no-repeat 10px center;
+}
+div#first{
+    text-align: center;
+width:500px;
+height:auto;
+margin:50px auto 0;
+padding:50px;
+background: black url("exm.jpg") no-repeat 10px center;
+color:#ffffff;
+border:10px solid #cc0033;
+border-radius:40px 0 40px 0;
+box-shadow: 10px 10px 5px #888888;
+ font-family:'Raleway',sans-serif;
+ font: bold 20px verdana center;
+    -moz-box-shadow: 0 0 5px #888;
+    -webkit-box-shadow: 0 0 5px#888;
+}

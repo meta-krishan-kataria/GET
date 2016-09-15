@@ -1,0 +1,31 @@
+#header {
+    background-color:navy;
+    color:white;
+    text-align:center;
+    height:50px;
+    
+    font-family: sans-serif;
+}
+#nav {
+    
+    background-color:lightgrey;
+    height:400px;
+    width:200px;
+    float:left;
+    	      
+}
+#section {
+    width:350px;
+    float:left;
+    padding-left:300px;
+    padding-top: 30px;
+}
+#footer {
+    background-color:navy;
+    color:white;
+    clear:both;
+    text-align:center;
+   padding:5px;
+   height:20px;
+   text:ONLINE EXAM;
+}
