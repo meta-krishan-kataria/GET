@@ -16,31 +16,12 @@ import web1.Student;
  */
 public class DataAccessObject {
     
+	ConnectionFactory factory;
     private Connection connection=null;
     private Statement statement=null;
    /* private ResultSet rs = null;  */
     
-    
-    /**
-     * private method 
-     * creates connection with DB
-     * @throws DBConnectionFailedException
-     * */
-    private void createConnection() throws DBConnectionFailedException{
-        try {
-        	
-			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver"); 
-			connection=DriverManager.getConnection("jdbc:odbc:Exam2");
-			statement=connection.createStatement();
-			
-		}catch(ClassNotFoundException | SQLException e) {
-			
-			e.printStackTrace();
-			throw new DBConnectionFailedException();
-			
-		}
-        
-    }
+   
     
     /**
      * inserts student record to DB
@@ -63,7 +44,10 @@ public class DataAccessObject {
     	try {
     		
     		//connecting with DB
-    		createConnection();
+    		 factory=ConnectionFactory.getInstance();
+    		Connection connection=factory.getConnection();
+    		//creating statement
+    		statement=connection.createStatement();
     		//executing query
 			statement.executeUpdate(query);
 			
@@ -72,11 +56,19 @@ public class DataAccessObject {
 			e.printStackTrace();
 			throw new DataInsertionException();
 			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally{
 			
 			try {
 				
-				releaseConnection();	// it also throws exception !! 
+				try {
+					factory.releaseConnection();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	// it also throws exception !! 
 				
 			} catch (DBConnectionFailedException e) {
 				
@@ -89,11 +81,34 @@ public class DataAccessObject {
 
     }
     
+    /* 
+     *//**
+      * private method 
+      * creates connection with DB
+      * @throws DBConnectionFailedException
+      * *//*
+     private void createConnection() throws DBConnectionFailedException{
+         try {
+         	
+ 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver"); 
+ 			connection=DriverManager.getConnection("jdbc:odbc:Exam2");
+ 			statement=connection.createStatement();
+ 			
+ 		}catch(ClassNotFoundException | SQLException e) {
+ 			
+ 			e.printStackTrace();
+ 			throw new DBConnectionFailedException();
+ 			
+ 		}
+         
+     }*/
+    
+    
     /**
      * private method
      * releases db connection
      * @throws DBConnectionFailedException
-     * */
+     * *//*
     private void releaseConnection() throws DBConnectionFailedException{
     	try {
 			statement.close();
@@ -104,6 +119,6 @@ public class DataAccessObject {
 		}
     	
     }
-    
+    */
     
 }
