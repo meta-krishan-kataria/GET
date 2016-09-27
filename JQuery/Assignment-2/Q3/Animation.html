@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="animation.js"></script>
+<style type="text/css">
+	#target{
+		background: #98bf21; 
+		height: 100px; width: 100px; 
+		position: absolute;
+		left: 50%;
+		top: 50%;
+	
+	}
+	#btn-up,#btn-down,#btn-left,#btn-right{
+		position:relative;
+		left: 50px;
+		width: 80px;
+		height: 80px;
+		margin: 5px;
+	}
+	#btn-up,#btn-down{
+		left: 100px;
+
+	}
+	
+
+</style>
+</head>
+<body>
+
+	<button id="btn-start">Start</button>
+	<button id="btn-stop">Stop</button>
+	<button id="btn-back">Move back</button>
+	<br>
+	Navigation
+	<br>
+	<button id="btn-up">Up</button>
+	<br>
+	<button id="btn-left">Left</button>
+	<button id="btn-right">Right</button>
+	<br>
+	<button id="btn-down">Down</button>
+
+
+	<div id="container">
+		<div id="target"></div>
+	
+	</div>
+	
+
+</body>
+</html>

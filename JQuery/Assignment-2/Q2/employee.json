@@ -1,0 +1,35 @@
+{
+	"E01" : {
+		
+		"name" : "ABC",
+		"email" : "ABC@gmail.com",
+		"DOB" : "12/03/1997",
+		"address" : "Rajasthan"
+	},
+	
+	"E02" : {
+		
+		"name" : "CDE",
+		"email" : "CDE@gmail.com",
+		"DOB" : "10/05/1998",
+		"address" : "Maharashtra"
+			
+	},
+	
+	"E03" : {
+		
+		"name" : "EFG",
+		"email" : "EFG@gmail.com",
+		"DOB" : "23/06/1995",
+		"address" : "Gujarat"
+	},
+	
+	"E04" : {
+		
+		"name" : "GHI",
+		"email" : "GHI@gmail.com",
+		"DOB" : "22/05/1978",
+		"address" : "Madhya Pradesh"
+	}
+	
+}
