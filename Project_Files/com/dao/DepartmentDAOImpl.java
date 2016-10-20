@@ -3,15 +3,10 @@
  */
 package com.dao;
 
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
-
-
-
-
-
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -35,14 +30,14 @@ import com.model.UserDetails;
 
 @Repository
 public class DepartmentDAOImpl implements DepartmentDAO {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	
 
-	
-	
+
+
+
+
 	/**
 	 * a utility method to get user id of the dept-head
 	 * 
@@ -51,28 +46,28 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 	public int getUserIdOfDepartmentHead(int deptId){
 		Session session=null;
 		UserDetails departmentHead = null;
-		
+
 		try 
 		{
 			session = sessionFactory.openSession();
 			Query query = session.createQuery("FROM UserDetails WHERE department.id= :deptId AND role='dept-head'");
 			query.setInteger("deptId", deptId);
 			departmentHead = (UserDetails) query.list().get(0);
-			
+
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}finally{
 			session.close();
 		}
-		
+
 		System.out.println(" "+departmentHead.getName());
-		
+
 		return departmentHead.getId();
-		
+
 	}
-	
-	
-	
+
+
+
 	@Override
 	public List<Issue> getAllIssues(int deptId) 
 	{
@@ -96,14 +91,14 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 		return issueList;
 	}
 
-	
-	
+
+
 	@Override
 	public List<Issue> getNewIssues(int deptId) 
 	{
 		List<Issue> issueList = null;
 		Session session=null;
-		
+
 		try 
 		{
 			session=sessionFactory.openSession();
@@ -119,19 +114,19 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 		}finally{
 			session.close();
 		}
-		
+
 		return issueList;
 	}
-	
-	
-	
-	
+
+
+
+
 	@Override
 	public List<Issue> getPendingIssues(int deptId) 
 	{
 		List<Issue> issueList = null;
 		Session session=null;
-		
+
 		try 
 		{
 			session=sessionFactory.openSession();
@@ -147,26 +142,26 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 		}finally{
 			session.close();
 		}
-		
+
 		return issueList;
 	}
 
-	
+
 	@Override
 	public Issue getIssueById(int id) {
 		Session session = sessionFactory.openSession();
-		
+
 		Query q= session.createQuery("from Issue where id= :id");
 		q.setInteger("id", id);
 		Issue issue=(Issue) q.uniqueResult();		
 		session.close();
-		
+
 		System.out.println( issue.getTitle()  );
 		return issue;
 	}	
-	
-	
-	
+
+
+
 	/**
 	 * Updates status of the issue
 	 * dept-head and change status to 'approve','conflict'
@@ -176,11 +171,11 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 	{
 		boolean result=false;
 		Session session=null;
-		
+
 		try {
 			session=sessionFactory.openSession();
 			Transaction t=session.beginTransaction();
-			
+
 			//updating currentStatus in Issue 
 			Query query=session.createQuery("UPDATE Issue SET currentStatus= :status WHERE id= :issueId");
 			query.setInteger("issueId", issueId);
@@ -189,13 +184,13 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 			t.commit();
 			session.close();
 			System.out.println("Status updated");
-			
+
 			//updating in IssueStatus for log
 			long time = System.currentTimeMillis();	//current time
 			IssueStatus statusLog=new IssueStatus(issueId, status, new Timestamp(time), getUserIdOfDepartmentHead(deptId));
 			result=storeStatusLog(statusLog);
 			System.out.println("logged done");
-			
+
 		} catch (HibernateException e) {
 			e.printStackTrace();	
 		}finally{
@@ -203,13 +198,13 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 				session.close();
 			}
 		}
-		
+
 
 		return result;
 	}
 
-	
-	
+
+
 	/*public boolean simpleUpdate(){
 		Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();                
@@ -219,32 +214,32 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         query.executeUpdate(); //add this line
         tx.commit();
         session.close();
-        
+
         return true;
 	}*/
-	
-	
+
+
 	public boolean storeStatusLog(IssueStatus statusLog){
 		boolean result=false;
 		Session session=null;
-		
+
 		try {
 			session=sessionFactory.openSession();
 			Transaction transaction=session.beginTransaction();
 			session.save(statusLog);
 			transaction.commit();
 		} catch (HibernateException e) {
-			
+
 			e.printStackTrace();
 		}finally{
 			session.close();
 		}
-		
+
 		System.out.println("status logged");	
 		return true;
 	}
-	
-	
+
+
 
 	@Override
 	public List<UserDetails> getAllResolvers(int deptId) 
@@ -260,18 +255,18 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 				System.out.println("Resolvers List::"+  user.getName() );
 			}
 		} catch (HibernateException e) {
-			
+
 			e.printStackTrace();
 		}finally{
 			session.close();
 		}
 		return resolversList;
-		
+
 	}
 
-	
+
 	/*not needed*/
-	
+
 	/*@Override
 	public List<UserDetails> getAllAvailabeResolvers(int deptId, int issueId) {
 		List<UserDetails> resolversList = null;
@@ -282,31 +277,31 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 					+ "AND id NOT IN (SELECT Issue.resolvers.id FROM Issue WHERE id= :issueId)") ;
 			query.setInteger("deptId", deptId);
 			query.setInteger("issueId", issueId);
-			
+
 			resolversList=query.list();
 			for(UserDetails user : resolversList){
 				System.out.println("Resolvers List::"+  user );
 			}
 		} catch (HibernateException e) {
-			
+
 			e.printStackTrace();
 		}
 		return resolversList;
 	}*/
 
-	
-	
+
+
 	@Override
 	/*
 	 * loads the Issue object, add new resolver to resolvers list and updates the Issue
 	 * */
 	public boolean assignIssueToResolver(int issueId, int resolverId, int deptId) {
-		
+
 		Session session=null;
 		try 
 		{
 			session=sessionFactory.openSession();
-			
+
 			//loading Issue
 			Transaction transaction = session.beginTransaction();
 			Issue issue = (Issue) session.load( Issue.class, new Integer( issueId ));
@@ -315,23 +310,23 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
 			//loading resolver (UserDetails object) 
 			UserDetails resolver = getResolver(resolverId);
-			
+
 			// adding resolver to  resolvers list
 			List<UserDetails> resolversList=issue.getResolvers();
 			if( resolversList == null ){
 				resolversList=new ArrayList<UserDetails>();
 			}
 			resolversList.add(resolver);
-			
+
 			//updating Issue
 			Transaction transaction2 = session.beginTransaction();
 			session.update( issue );
 			transaction2.commit();
-			
+
 			System.out.println("Issue object updated");
 
-			
-			
+
+
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}finally{
@@ -340,11 +335,11 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 		return false;
 	}
 
-	
+
 	@Override
 	public UserDetails getResolver(int resolverId)
 	{
-		
+
 		Session session=null;
 		UserDetails resolver=null;
 		try 
@@ -355,23 +350,22 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 			resolver = (UserDetails) session.load( UserDetails.class, new Integer( resolverId ));
 			System.out.println("Resolver object loaded. " + resolver.getName() );
 			transaction.commit();
-		
-			
+
+
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			
+
 		}finally{
 			session.close();
 		}
-		
+
 		return resolver;
 	}
-		
 
-	
+
+
 	@Override
-	public boolean setTargetResolutionDateForIssue(
-			Timestamp targetResolutionDate, int issueId) {
+	public boolean setTargetResolutionDateForIssue( Timestamp targetResolutionDate, int issueId) {
 		// TODO Auto-generated method stub
 		return false;
 	}
