@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 
 import com.model.Issue;
 import com.model.IssueVO;
+import com.model.ResolverVO;
+import com.model.UserDetails;
 
 @Component
 public class Adapter {
@@ -16,15 +18,15 @@ public class Adapter {
 		IssueVO issueVO=new IssueVO();
 		issueVO.setId( issue.getId() );
 		issueVO.setTitle( issue.getTitle() );
-		issueVO.setCreatedBy( issue.getCreatedBy().getId() );
+		issueVO.setCreatedBy( issue.getCreatedBy().getId() + "" );
 		issueVO.setCreater( issue.getCreatedBy().getName() );
 		issueVO.setCreatedOn( issue.getCreatedOn().toString() );
-		issueVO.setDepartment( issue.getDepartment().getDepartmentName() );
+		issueVO.setDepartmentName(issue.getDepartment().getDepartmentName());
 		issueVO.setBody( issue.getBody()  );
 		issueVO.setCurrentStatus( issue.getCurrentStatus() );
 		issueVO.setPriority( issue.getPriority() );
-		issueVO.setTargetResolutionDate( issue.getTargetResolutionDate().toString() );
-		issueVO.setActualResolutionDate( issue.getActualResolutionDate().toString() );
+	/*	issueVO.setTargetResolutionDate(issue.getTargetResolutionDate()?"" );
+		issueVO.setActualResolutionDate( issue.getActualResolutionDate().toString() );*/
 		//issueVO.setTags(tags);
 		//issueVO.setResolvers(resolvers);
 		return issueVO;
@@ -39,6 +41,28 @@ public class Adapter {
 			issueVOList.add( convertToVO( issue ) );
 		}
 		return issueVOList;
+	}
+	
+	
+	public ResolverVO convertToResolverVO( UserDetails userDetails){
+		
+		ResolverVO resolverVO=new ResolverVO();
+		
+		
+		resolverVO.setName( userDetails.getName() );
+		
+		return resolverVO;
+	}
+	
+	
+public List<ResolverVO> convertToResolverVO( List<UserDetails> userDetailsList){
+		
+	List<ResolverVO> resolverVOList=new ArrayList<ResolverVO>();
+	
+	for(UserDetails userDetails : userDetailsList  ){
+		resolverVOList.add( convertToResolverVO( userDetails ) );
+	}
+	return resolverVOList;
 	}
 	
 }
