@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.Metacube.model" />
+	<context:component-scan base-package="com.Metacube.controller" />
+	<context:component-scan base-package="com.Metacube.factory" />
+	<context:component-scan base-package="com.Metacube.daoLayer" />
+
+	<bean id="carVO" class="com.Metacube.model.CarVO"></bean>
+	<bean id="carFacade" class="com.Metacube.model.CarFacade"></bean>
+	<bean id="carDao" class="com.Metacube.daoLayer.CarDAO"></bean>
+	<bean id="connectionFactory" class="com.Metacube.factory.ConnectionFactory"></bean>
+	<bean id="facadeFactory" class="com.Metacube.factory.FacadeFactory"></bean>
+
+</beans>  
