@@ -1,0 +1,26 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+.close {
+	opacity: 1.0;
+}
+
+.cardClose {
+	color: white;
+	font-weight:bold;
+	margin-right:5px;
+	position: relative;
+}
+
+.cardImage {
+	height:50px;
+	width:50px;
+	margin-top:10px;
+	margin-bottom:10px;	
+}
+
+input {
+	margin-bottom: 10px;
+}
